@@ -57,6 +57,15 @@
 
     <Rocket :progress="scrollProgress" :base-width="rocketBaseWidth" class="free-rocket" />
   </div>
+  <div class="skills-text-transition">
+    <div class="quote-container">
+      <p class="cosmic-quote">
+        <!-- "Designing worlds not just to be seen, but to be lived." -->
+        "Distance is not measured by the passing of years, but by the memories we carry."
+      </p>
+      <span class="quote-author">— Fernanda Carvalho</span>
+    </div>
+  </div>
 </template>
 
 <script lang="ts" setup>
@@ -109,6 +118,44 @@ onUnmounted(() => {
 </script>
 
 <style scoped>
+.skills-text-transition {
+  width: 100%;
+  height: 25vh;
+  /* Preenche o espaço vazio */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #ffffff;
+  /* Mantém a cor base para não quebrar a sua máscara */
+  padding: 0 24px;
+}
+
+.quote-container {
+  text-center: center;
+  max-width: 600px;
+}
+
+.cosmic-quote {
+  font-size: clamp(16px, 2.5vw, 22px);
+  font-weight: 300;
+  font-style: italic;
+  color: #2D2D2D;
+  /* Cor escura para contrastar no fundo claro */
+  line-height: 1.6;
+  margin-bottom: 8px;
+  letter-spacing: 0.5px;
+}
+
+.quote-author {
+  display: block;
+  font-size: clamp(11px, 1.2vw, 13px);
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: #8C4F5E;
+  /* Tom rosa/vinho para criar identidade visual */
+  font-weight: 600;
+}
+
 .skills-wrapper,
 .relative-container {
   overflow: hidden;

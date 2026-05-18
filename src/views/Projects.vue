@@ -1,6 +1,10 @@
 <script setup lang="ts">
 import { ref } from "vue"
-import Stars from "@/components/Stars.vue"
+import Moon from "@/components/Moon.vue"
+import Neptune from "@/components/Neptune.vue"
+import vector6 from "@/assets/Vector 6@2x.svg";
+import Stars from "@/components/Stars.vue";
+import { As } from "vuetify/lib/components/VOverlay/util/point.mjs";
 
 interface ProjectItem {
   id: number
@@ -77,14 +81,21 @@ function closeDialog() {
 <template>
   <section id="projects" class="projects-section">
     <div class="scenery-layer">
-      <Stars />
+      <Moon />
+      <Neptune />
     </div>
+    <div class="scenery-vector-6">
+      <img :src="vector6" alt="Background Scene" />
+    </div>
+
     <v-container fluid class="pa-0 content-layer">
       <v-container class="px-5 px-md-16 py-0">
+        <Stars />
+
         <v-row class="header-row" align="start" justify="center">
-          <v-col cols="12" class="text-center text-md-left mb-8 mb-md-12">
-            <div class="custom-name text-secondary">Projects</div>
-            <div class="custom-text text-secondary mt-2">
+          <v-col cols="12" class="text-center text-md-left mb-6 mb-md-10">
+            <div class="custom-name text-primary">Projects</div>
+            <div class="custom-text text-primary mt-2">
               Games, apps, and creative experiments
             </div>
           </v-col>
@@ -102,8 +113,8 @@ function closeDialog() {
                 </div>
               </div>
               <v-card-text class="card-body">
-                <h3 class="card-title text-secondary">{{ project.title }}</h3>
-                <p class="card-description text-secondary">
+                <h3 class="card-title text-primary">{{ project.title }}</h3>
+                <p class="card-description text-primary">
                   {{ project.description }}
                 </p>
                 <div class="card-tags-row">
@@ -156,6 +167,20 @@ function closeDialog() {
   overflow: hidden;
 }
 
+.scenery-vector-6 {
+  position: absolute;
+  top: 0px;
+  left: 0;
+  width: 100%;
+  max-width: 700px;
+  pointer-events: none;
+}
+
+.scenery-vector-6 img {
+  width: 80%;
+  height: auto;
+}
+
 .scenery-layer {
   position: absolute;
   top: 0;
@@ -163,7 +188,7 @@ function closeDialog() {
   width: 100%;
   height: 100%;
   pointer-events: none;
-  z-index: 0;
+  z-index: 1;
 }
 
 .content-layer {
@@ -199,7 +224,7 @@ function closeDialog() {
 }
 
 .project-card {
-  background: rgba(255, 255, 255, 0.03) !important;
+  background: rgba(255, 255, 255, 255) !important;
   border: 1px solid rgba(255, 255, 255, 0.06);
   border-radius: 16px !important;
   overflow: hidden;
@@ -265,7 +290,6 @@ function closeDialog() {
   line-height: 1.6;
   opacity: 0.7;
   display: -webkit-box;
-  -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
   margin-bottom: 10px;

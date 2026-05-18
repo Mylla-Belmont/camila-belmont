@@ -16,27 +16,19 @@ interface GalleryItem {
   imageUrl: string;
 }
 
+const toolAssignments: string[] = [
+  "Sketchbook", "Sketchbook", "Sketchbook", "Sketchbook", "Sketchbook",
+  "Sketchbook", "Sketchbook", "Sketchbook", "Sketchbook", "Sketchbook",
+  "Sketchbook", "Sketchbook", "Sketchbook", "Sketchbook", "Sketchbook",
+  "Photoshop", "Photoshop", "Photoshop", "Sketchbook", "Sketchbook",
+  "Sketchbook", "Sketchbook", "Paint", "Sketchbook", "Krita",
+  "Krita", "Ibis Paint", "Ibis Paint", "Ibis Paint", "Ibis Paint",
+  "Ibis Paint", "Ibis Paint", "Ibis Paint", "Ibis Paint", "Ibis Paint",
+]
+
 function deriveTitle(filepath: string): string {
   const filename = filepath.split("/").pop()?.split("\\").pop() ?? ""
-  let name = filename.replace(/\.[^.]+$/, "")
-  name = name.replace(/^IMG-[\w-]+/, "")
-  name = name.replace(/^WhatsApp Image [\d-]+ at [\d.]+( \([\d]+\))?/i, "")
-  name = name.replace(/^[\d]+°\s*de\.\.\.\s*/i, "")
-  name = name.replace(/^[\d]+°-de\.\.\.-/i, "")
-  name = name.replace(/[-_]+/g, " ")
-  name = name.replace(/\s+/g, " ").trim()
-  name = name.replace(/^[.\s-]+|[.\s-]+$/g, "")
-  if (!name) return "Untitled"
-  return name.charAt(0).toUpperCase() + name.slice(1)
-}
-
-function deriveTool(filepath: string): string {
-  const filename = filepath.toLowerCase()
-  if (filename.includes("blender")) return "Blender"
-  if (filename.includes("photoshop") || filename.includes("psd")) return "Photoshop"
-  if (filename.includes("procreate")) return "Procreate"
-  if (filename.includes("figma")) return "Figma"
-  return "Photoshop"
+  return filename.replace(/\.[^.]+$/, "").replace(/^a/, "A")
 }
 
 const galleryItems: GalleryItem[] = Object.entries(imageModules)
@@ -44,7 +36,7 @@ const galleryItems: GalleryItem[] = Object.entries(imageModules)
   .map(([path, module], index) => ({
     id: index + 1,
     title: deriveTitle(path),
-    tool: deriveTool(path),
+    tool: toolAssignments[index] ?? "Photoshop",
     imageUrl: module.default,
   }))
 
@@ -79,6 +71,11 @@ const toolColors: Record<string, string> = {
   Unity: "#E2232A",
   Godot: "#478CBF",
   Procreate: "#5B4FE9",
+  Krita: "#3B7EBF",
+  "Ibis Paint": "#ED8E00",
+  Paint: "#FFC107",
+  Canva: "#00C4CC",
+  Sketchbook: "#2D3561",
 };
 
 function getToolColor(tool: string): string {
@@ -144,6 +141,7 @@ onUnmounted(() => {
 
     <Jupiter />
     <Stars />
+    <AsteroidBelt />
 
     <v-row class="ml-2 ml-sm-6 pt-12 pt-sm-16 header-content" align="start" justify="start">
       <v-col cols="12" sm="10" md="8" lg="6" class="ml-4 ml-sm-8 ml-md-16">
@@ -450,6 +448,11 @@ onUnmounted(() => {
   .scenery-vector-4 {
     width: 80%;
     top: -20px;
+  }
+
+  .scenery-vector-6 {
+    width: 60%;
+    top: -10px;
   }
 
   .nav-zone {
