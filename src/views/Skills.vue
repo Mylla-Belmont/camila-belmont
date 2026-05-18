@@ -9,11 +9,11 @@
       <v-container class="px-5 px-md-6 py-0">
         <v-row class="fill-height" align="start" justify="end">
           <v-col cols="12" sm="11" md="8" lg="7" class="d-flex flex-column custom-align-col">
-            
+
             <div class="formation-name text-primary mb-6 mb-md-8">Skills</div>
 
             <div class="skills-grid">
-              
+
               <div class="skill-group">
                 <div class="skill-subtitle text-primary mb-3">
                   <v-icon icon="mdi-palette" class="mr-2" size="small" />Illustration & Games
@@ -214,8 +214,10 @@ onUnmounted(() => {
 
   .custom-align-col {
     padding-top: 0px !important;
-    align-items: flex-start !important; /* Corrigido para esquerda */
-    text-align: left !important;         /* Corrigido para esquerda */
+    align-items: flex-start !important;
+    /* Corrigido para esquerda */
+    text-align: left !important;
+    /* Corrigido para esquerda */
     width: 100%;
     max-width: 100%;
   }
@@ -226,7 +228,8 @@ onUnmounted(() => {
   }
 
   .chips-wrapper {
-    justify-content: flex-start; /* Corrigido para esquerda */
+    justify-content: flex-start;
+    /* Corrigido para esquerda */
     gap: 8px;
     margin-left: 0;
     max-width: 100%;
@@ -253,13 +256,16 @@ onUnmounted(() => {
 
   .content-layer {
     position: relative;
-    padding-top: 28vh; /* Empurra o conteúdo para baixo do desenho da onda */
+    padding-top: 28vh;
+    /* Empurra o conteúdo para baixo do desenho da onda */
   }
 
   .custom-align-col {
     padding-top: 0px !important;
-    align-items: flex-start !important; /* Esquerda */
-    text-align: left !important;         /* Esquerda */
+    align-items: flex-start !important;
+    /* Esquerda */
+    text-align: left !important;
+    /* Esquerda */
     width: 100%;
     max-width: 100%;
   }
@@ -270,7 +276,8 @@ onUnmounted(() => {
   }
 
   .chips-wrapper {
-    justify-content: flex-start; /* Esquerda */
+    justify-content: flex-start;
+    /* Esquerda */
     gap: 8px;
     margin-left: 0;
     max-width: 100%;

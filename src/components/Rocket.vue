@@ -35,7 +35,7 @@ const rocketStyle = computed(() => {
     /* Desktop path */
     startX = 5;
     startY = 40;
-    endX = 100;
+    endX = 70;
     endY = -20;
     baseRotation = -5;
   } else if (w >= 481) {
@@ -83,6 +83,7 @@ const rocketStyle = computed(() => {
 .rocket-container {
   pointer-events: none;
 }
+
 .rocket-image {
   width: 100%;
   height: auto;

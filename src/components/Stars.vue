@@ -19,10 +19,10 @@ function randomPercent() {
   return Math.random() * 100;
 }
 
-function randomImage() {
+function randomImage(): string {
   const images = [wideStar, thinStar];
   const idx = Math.floor(Math.random() * images.length);
-  return images[idx];
+  return images[idx] || wideStar;
 }
 
 function distance(star1: Star, star2: Star) {
@@ -49,7 +49,7 @@ function createStar(existingStars: Star[] = []): Star {
 
 function toggleStar(index: number) {
   if (!stars.value[index]) return;
-  
+
   stars.value[index].visible = false;
 
   setTimeout(() => {
@@ -108,16 +108,10 @@ onUnmounted(() => {
 
 <template>
   <v-container fluid class="pa-0 fill-height stars-container">
-    <div
-      v-for="(star, index) in stars"
-      :key="index"
-      class="floating-star"
-      :class="{ visible: star.visible }"
-      :style="{
-        top: star.y + '%',
-        left: star.x + '%'
-      }"
-    >
+    <div v-for="(star, index) in stars" :key="index" class="floating-star" :class="{ visible: star.visible }" :style="{
+      top: star.y + '%',
+      left: star.x + '%'
+    }">
       <img :src="star.image" alt="Sparkling Star" />
     </div>
   </v-container>
@@ -131,7 +125,8 @@ onUnmounted(() => {
   left: 0;
   width: 100%;
   height: 100%;
-  pointer-events: none; /* Estrelas não podem bloquear cliques do usuário */
+  pointer-events: none;
+  /* Estrelas não podem bloquear cliques do usuário */
   z-index: 0;
 }
 
