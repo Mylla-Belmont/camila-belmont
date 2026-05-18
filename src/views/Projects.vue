@@ -4,7 +4,11 @@ import Moon from "@/components/Moon.vue"
 import Neptune from "@/components/Neptune.vue"
 import vector6 from "@/assets/Vector 6@2x.svg";
 import Stars from "@/components/Stars.vue";
-import { As } from "vuetify/lib/components/VOverlay/util/point.mjs";
+
+const projectModules = import.meta.glob<{ default: string }>(
+  "@/assets/projects/*",
+  { eager: true }
+)
 
 interface ProjectItem {
   id: number
@@ -14,56 +18,56 @@ interface ProjectItem {
   tags: string[]
 }
 
-const projects: ProjectItem[] = [
+const projectData: { title: string; description: string; tags: string[] }[] = [
   {
-    id: 1,
-    title: "Realm of Echoes",
+    title: "Brazumbus",
     description:
-      "An immersive dark fantasy RPG built with Unity, featuring a dynamic day-night cycle, procedurally generated dungeons, and a rich branching narrative system. Players shape the world through their choices in this single-player experience that blends exploration, combat, and deep lore.",
-    imageUrl: "https://picsum.photos/seed/realm/600/400",
-    tags: ["Unity", "C#", "Blender"],
+      "Brazumbus is a 2D action platformer where the player takes control of Fazzio Elison, a former elite soldier who once served in the Brazilian army and acted as the president’s right-hand man. The story takes place in Brasília, now devastated by a zombie outbreak that has turned the city into an apocalyptic battlefield.",
+    tags: ["Personal Project", "Prototype", "Desktop"],
   },
   {
-    id: 2,
-    title: "Pixel Frontier",
+    title: "Killer Gominho",
     description:
-      "A retro-style 2D platformer that blends classic pixel art with modern game design. Featuring tight controls, hand-crafted levels, and an original chiptune soundtrack. Built from the ground up with GameMaker Studio and published on Steam Early Access.",
-    imageUrl: "https://picsum.photos/seed/pixelfrontier/600/400",
-    tags: ["GameMaker", "Aseprite"],
+      "Killer Gominho is an ongoing project created as the starting point for the semester-long Game Development course promoted by the PET-TI program at the Federal University of Ceará. The game follows a simple proposal involving platform design, characters, gameplay, and other core aspects. Below is a simple GDD created during a meeting, and updates will be added here as the project evolves.",
+    tags: ["Personal Project", "Prototype", "Desktop"],
   },
   {
-    id: 3,
-    title: "Neon Drift",
+    title: "Fighting Game — Naruto",
     description:
-      "A high-speed arcade racer set in a cyberpunk metropolis. Experience intense drift mechanics, dynamic weather systems, and a pulsating synthwave soundtrack. Developed in Unreal Engine 5 with custom Blueprint systems and nanite-optimized environments.",
-    imageUrl: "https://picsum.photos/seed/neondrift/600/400",
-    tags: ["Unreal Engine", "Blueprints"],
+      "This project was created to practice and expand the knowledge acquired during the Fundamentals of Databases course, while also improving programming skills in Java and database relationship modeling. It is a simple game without a graphical interface, allowing the player to battle against the computer through a randomized opponent system.",
+    tags: ["Personal Project", "Programming", "Java", "PostgreSQL"],
   },
   {
-    id: 4,
-    title: "Starlight Ballad",
+    title: "Dots Game",
     description:
-      "A narrative-driven adventure game that explores themes of memory and identity through hand-painted visuals and an evocative orchestral score. Players unravel a deep mystery across beautifully illustrated environments, each with unique gameplay mechanics.",
-    imageUrl: "https://picsum.photos/seed/starlight/600/400",
-    tags: ["Unity", "Photoshop", "FMOD"],
+      "This project was developed as the final assignment for the Fundamentals of Programming course during the first semester of the Information Systems degree. The game is relatively simple and does not feature a graphical interface, relying only on minimal visual elements. All of its logic was implemented using the C programming language.",
+    tags: ["Personal Project", "Programming", "C"],
   },
   {
-    id: 5,
-    title: "Void Construct",
+    title: "The Suspect of House 187",
     description:
-      "A tactical sci-fi strategy game where players command a fleet of customizable starships. Features real-time combat with pause, deep ship customization, and a branching campaign with multiple endings. Developed in Godot 4 with custom shader effects.",
-    imageUrl: "https://picsum.photos/seed/voidconstruct/600/400",
-    tags: ["Godot", "GDScript", "Blender"],
+      "The Suspect of House 187 is an escape room game with a mysterious atmosphere designed to evoke feelings of tension and distress among players aged 16 to 25. It consists of a physical map used to locate the main character, cards with different objectives (object cards, photographs, actions, rescue cards, among others), and a digital QR code scanning system essential for identifying card content and creating an immersive mysterious atmosphere throughout the experience.",
+    tags: ["Personal Project", "Board Game"],
   },
   {
-    id: 6,
-    title: "Whispering Tides",
+    title: "Migratory Birds",
     description:
-      "An atmospheric puzzle game set in an abandoned underwater civilization. Solve environmental puzzles, uncover ancient lore, and restore life to the ocean depths. Created as a solo project over 18 months with original art and music.",
-    imageUrl: "https://picsum.photos/seed/tides/600/400",
-    tags: ["Unity", "Procreate", "FMOD"],
+      "Migratory Birds marked my first mobile game prototype, created with the goal of participating in the Change the Game challenge promoted by Google in 2019. With this modest project — developed in just a few days and entirely designed and assembled on a mobile phone — I earned an Honorable Mention at the end of the competition.",
+    tags: ["Personal Project", "Prototype", "Mobile"],
   },
 ]
+
+const projectImages = Object.entries(projectModules)
+  .sort(([a], [b]) => a.localeCompare(b))
+  .map(([, module]) => module.default)
+
+const projects: ProjectItem[] = projectData.map((data, index) => ({
+  id: index + 1,
+  title: data.title,
+  description: data.description,
+  imageUrl: projectImages[index] ?? "",
+  tags: data.tags,
+}))
 
 const dialogOpen = ref(false)
 const selectedProject = ref<ProjectItem | null>(null)

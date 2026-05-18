@@ -198,14 +198,6 @@ onUnmounted(() => {
       </div>
 
       <div v-else key="full" class="full-gallery">
-        <div class="full-gallery-header">
-          <v-btn variant="text" class="back-btn text-primary" @click="toggleGallery(false)">
-            <v-icon class="mr-2">mdi-arrow-left</v-icon>
-            Voltar para o Portfólio
-          </v-btn>
-          <div class="full-gallery-title text-primary">Todas as Ilustrações</div>
-        </div>
-
         <v-row class="full-gallery-grid">
           <v-col v-for="item in galleryItems" :key="item.id" cols="12" sm="6" class="pa-3">
             <div class="full-gallery-card" @click="openPreview(item)">

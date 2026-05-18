@@ -6,9 +6,8 @@ import logoImg from "@/assets/Logo-CB.png";
 const sectionMap: Record<string, string> = {
   "About me": "about-me",
   Skills: "skills",
-  Portfolio: "portfolio",
-  Projects: "projects",
-  Contact: "contact"
+  Illustrations: "portfolio",
+  Projects: "projects"
 };
 
 const menuItems = ref(Object.keys(sectionMap));

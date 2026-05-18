@@ -23,9 +23,6 @@ import Stars from "@/components/Stars.vue";
     position: relative;
     z-index: 1;
     max-width: 100vw;
-    /* Importante: permite que os vetores vazem suavemente sem corte seco */
-    overflow-y: visible;
-    overflow-x: hidden;
 }
 
 /* --- TRATAMENTO DO VETOR 5 (SEM CORTES) --- */

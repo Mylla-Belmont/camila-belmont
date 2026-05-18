@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 // Importação higienizada para o ecossistema Vite
-import jupiterImg from "@/assets/jupiter.svg";
+import jupiterImg from "@/assets/Jupiter.svg";
 </script>
 
 <template>
