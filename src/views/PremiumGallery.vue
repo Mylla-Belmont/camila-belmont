@@ -112,11 +112,11 @@ onUnmounted(() => {
 
 <template>
   <section id="portfolio" class="gallery-section">
-    <div class="scenery-vector-4">
+    <!-- <div class="scenery-vector-4">
       <img :src="vector4" alt="Background Scene" />
-    </div>
+    </div> -->
 
-    <v-row class="ml-2 ml-sm-6 pt-12 pt-sm-16 header-content" align="center" justify="start">
+    <v-row class="ml-2 ml-sm-6 pt-12 pt-sm-16 header-content" align="center" justify="center">
       <v-col cols="12" sm="10" md="8" lg="6" class="ml-4 ml-sm-8 ml-md-16">
         <div class="custom-name text-primary">Illustrations</div>
         <div class="custom-text text-primary mt-2 mb-6">
@@ -167,14 +167,13 @@ onUnmounted(() => {
 
 <style scoped>
 .gallery-section {
-  margin-top: 15vh;
+  margin-top: 0vh;
   /* Empurra a seção inteira para baixo (aumente este valor se quiser mais baixo ainda) */
-  padding: 40px 0;
+  padding: 50px 0;
   /* Mantém um respiro interno confortável */
   padding: 0;
   position: relative;
   overflow: hidden;
-  background-color: transparent;
   /* Permite ver o fundo escuro do App */
 }
 
@@ -262,7 +261,6 @@ onUnmounted(() => {
   overflow: hidden;
   cursor: pointer;
   transition: transform 0.4s ease;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
 }
 
 .gallery-item:hover {
@@ -278,9 +276,12 @@ onUnmounted(() => {
 .item-overlay {
   position: absolute;
   bottom: 0;
-  width: 100%;
-  height: 40%;
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+  left: 0;
+  right: 0;
+  height: 50%;
+  /* Mude o background para transparente para sumir com o preto da base */
+  background: transparent !important;
+  pointer-events: none;
 }
 
 .tool-chip {

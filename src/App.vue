@@ -7,6 +7,7 @@ import HelloMain from "./views/HelloMain.vue";
 import AboutMe from "./views/AboutMe.vue";
 import Skills from "./views/Skills.vue";
 import PremiumGallery from "./views/PremiumGallery.vue";
+import Contact from "./views/Contact.vue";
 
 let lenis: Lenis | null = null;
 let animationFrameId: number | null = null;
@@ -48,6 +49,7 @@ onUnmounted(() => {
         <AboutMe />
         <Skills />
         <PremiumGallery />
+        <Contact />
       </v-container>
     </v-main>
   </v-app>
@@ -61,7 +63,8 @@ html.lenis body {
 }
 
 .lenis.lenis-smooth {
-  scroll-behavior: auto !important; /* Desativa o smooth nativo para não conflitar com o Lenis */
+  scroll-behavior: auto !important;
+  /* Desativa o smooth nativo para não conflitar com o Lenis */
 }
 
 .lenis.lenis-smooth [data-lenis-prevent] {
