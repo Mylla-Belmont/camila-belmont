@@ -164,11 +164,24 @@ function closeDialog() {
 </template>
 
 <style scoped>
+/* ============================================================
+   1. SEÇÃO PRINCIPAL E CENÁRIO
+   ============================================================ */
 .projects-section {
   position: relative;
   min-height: 100vh;
   width: 100%;
   overflow: hidden;
+}
+
+.scenery-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
 }
 
 .scenery-vector-6 {
@@ -185,21 +198,14 @@ function closeDialog() {
   height: auto;
 }
 
-.scenery-layer {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 1;
-}
-
 .content-layer {
   position: relative;
   z-index: 1;
 }
 
+/* ============================================================
+   2. CABEÇALHO
+   ============================================================ */
 .custom-name {
   font-size: clamp(28px, 6vw, 40px);
   font-weight: 700;
@@ -211,20 +217,16 @@ function closeDialog() {
   letter-spacing: 1.7px;
 }
 
+/* ============================================================
+   3. CARDS DE PROJETOS
+   ============================================================ */
 .projects-row {
   animation: fadeSlideIn 1.2s ease-out;
 }
 
 @keyframes fadeSlideIn {
-  from {
-    opacity: 0;
-    transform: translateY(40px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 .project-card {
@@ -314,6 +316,9 @@ function closeDialog() {
   height: 22px !important;
 }
 
+/* ============================================================
+   4. MODAL DE PREVIEW (v-dialog)
+   ============================================================ */
 .dialog-card {
   border-radius: 16px !important;
   overflow: hidden;
@@ -371,6 +376,9 @@ function closeDialog() {
   opacity: 0.85;
 }
 
+/* ============================================================
+   5. RESPONSIVIDADE
+   ============================================================ */
 @media (min-width: 600px) {
   .dialog-layout {
     flex-direction: row;

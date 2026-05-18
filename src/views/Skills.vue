@@ -118,20 +118,21 @@ onUnmounted(() => {
 </script>
 
 <style scoped>
+/* ============================================================
+   1. TRANSIÇÃO DE TEXTO (CITAÇÃO)
+   ============================================================ */
 .skills-text-transition {
   width: 100%;
   height: 25vh;
-  /* Preenche o espaço vazio */
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: #ffffff;
-  /* Mantém a cor base para não quebrar a sua máscara */
   padding: 0 24px;
 }
 
 .quote-container {
-  text-center: center;
+  text-align: center;
   max-width: 600px;
 }
 
@@ -140,7 +141,6 @@ onUnmounted(() => {
   font-weight: 300;
   font-style: italic;
   color: #2D2D2D;
-  /* Cor escura para contrastar no fundo claro */
   line-height: 1.6;
   margin-bottom: 8px;
   letter-spacing: 0.5px;
@@ -152,10 +152,12 @@ onUnmounted(() => {
   text-transform: uppercase;
   letter-spacing: 3px;
   color: #8C4F5E;
-  /* Tom rosa/vinho para criar identidade visual */
   font-weight: 600;
 }
 
+/* ============================================================
+   2. WRAPPER E CENÁRIO
+   ============================================================ */
 .skills-wrapper,
 .relative-container {
   overflow: hidden;
@@ -167,7 +169,6 @@ onUnmounted(() => {
   width: 100%;
 }
 
-/* --- CAMADA DO CENÁRIO (PRESERVADA) --- */
 .scenery-layer {
   width: 100%;
 }
@@ -180,7 +181,6 @@ onUnmounted(() => {
   margin-top: 25vh;
   padding-bottom: 120px;
   min-height: 100vh;
-
   -webkit-mask-image: url("@/assets/Vector 3@2x.svg");
   mask-image: url("@/assets/Vector 3@2x.svg");
   -webkit-mask-size: contain;
@@ -189,11 +189,12 @@ onUnmounted(() => {
   mask-position: left center;
   -webkit-mask-repeat: no-repeat;
   mask-repeat: no-repeat;
-
   overflow: hidden;
 }
 
-/* --- CAMADA DO CONTEÚDO (Isolada para evitar cortes) --- */
+/* ============================================================
+   3. CAMADA DE CONTEÚDO
+   ============================================================ */
 .content-layer {
   position: absolute;
   top: 40%;
@@ -214,7 +215,9 @@ onUnmounted(() => {
   pointer-events: none;
 }
 
-/* --- REGRAS DE GRID --- */
+/* ============================================================
+   4. GRID DE SKILLS
+   ============================================================ */
 .skills-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -225,6 +228,12 @@ onUnmounted(() => {
 .skill-group {
   display: flex;
   flex-direction: column;
+}
+
+.formation-name {
+  font-size: clamp(24px, 4vw, 32px);
+  letter-spacing: 1.2px;
+  font-weight: 700;
 }
 
 .skill-subtitle {
@@ -242,115 +251,6 @@ onUnmounted(() => {
   justify-content: flex-start;
 }
 
-/* --- AJUSTE DISPOSITIVOS MÉDIOS (TABLETS) --- */
-@media (min-width: 481px) and (max-width: 959px) {
-  .organic-background {
-    background-size: 100% auto;
-    -webkit-mask-size: 55% auto;
-    mask-size: 55% auto;
-    background-position: left top;
-    margin-top: 5vh;
-    min-height: auto;
-    padding-bottom: 80px;
-  }
-
-  .content-layer {
-    position: relative;
-    padding-top: 25vh;
-  }
-
-  .custom-align-col {
-    padding-top: 0px !important;
-    align-items: flex-start !important;
-    /* Corrigido para esquerda */
-    text-align: left !important;
-    /* Corrigido para esquerda */
-    width: 100%;
-    max-width: 100%;
-  }
-
-  .skills-grid {
-    grid-template-columns: 1fr;
-    gap: 32px;
-  }
-
-  .chips-wrapper {
-    justify-content: flex-start;
-    /* Corrigido para esquerda */
-    gap: 8px;
-    margin-left: 0;
-    max-width: 100%;
-    width: 100%;
-  }
-
-  .skill-subtitle {
-    text-align: left;
-    font-size: 14px;
-  }
-}
-
-/* --- AJUSTE DISPOSITIVOS PEQUENOS (MOBILE CORRIGIDO) --- */
-@media (max-width: 480px) {
-  .organic-background {
-    background-size: 30% auto;
-    -webkit-mask-size: 30% auto;
-    mask-size: 30% auto;
-    background-position: left top;
-    margin-top: 5vh;
-    min-height: auto;
-    padding-bottom: 190px;
-  }
-
-  .content-layer {
-    position: relative;
-    padding-top: 0vh;
-    /* Empurra o conteúdo para baixo do desenho da onda */
-  }
-
-  .custom-align-col {
-    padding-top: 0px !important;
-    align-items: flex-end !important;
-    /* Esquerda */
-    text-align: right !important;
-    /* Esquerda */
-    width: 100%;
-    max-width: 100%;
-  }
-
-  .skills-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 12%;
-    width: 80%;
-  }
-
-  .chips-wrapper {
-    justify-content: flex-end;
-    gap: 8px;
-    margin-left: 0px;
-    max-width: 100%;
-    width: 100%;
-  }
-
-  .skill-subtitle {
-    text-align: right;
-    font-size: 13px;
-  }
-
-  .skill-chip {
-    font-size: 11px !important;
-    height: 26px !important;
-    padding-inline: 10px;
-  }
-}
-
-/* --- CLASSES DE ACABAMENTO E TIPOGRAFIA --- */
-.formation-name {
-  font-size: clamp(24px, 4vw, 32px);
-  letter-spacing: 1.2px;
-  font-weight: 700;
-}
-
 .skill-chip {
   font-weight: 600 !important;
   letter-spacing: 0.8px;
@@ -361,7 +261,9 @@ onUnmounted(() => {
   font-size: 12px !important;
 }
 
-/* Cores dos Chips com transparência HUD */
+/* ============================================================
+   5. CORES DOS CHIPS (HUD)
+   ============================================================ */
 .design-chip {
   background: rgba(255, 111, 145, 0.05) !important;
   color: #ff6f91 !important;
@@ -402,5 +304,102 @@ onUnmounted(() => {
   background: rgba(255, 126, 41, 0.06) !important;
   color: #ff7e29 !important;
   border-color: rgba(255, 126, 41, 0.35) !important;
+}
+
+/* ============================================================
+   6. RESPONSIVIDADE
+   ============================================================ */
+@media (min-width: 481px) and (max-width: 959px) {
+  .organic-background {
+    background-size: 100% auto;
+    -webkit-mask-size: 55% auto;
+    mask-size: 55% auto;
+    background-position: left top;
+    margin-top: 5vh;
+    min-height: auto;
+    padding-bottom: 80px;
+  }
+
+  .content-layer {
+    position: relative;
+    padding-top: 25vh;
+  }
+
+  .custom-align-col {
+    padding-top: 0px !important;
+    align-items: flex-start !important;
+    text-align: left !important;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .skills-grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .chips-wrapper {
+    justify-content: flex-start;
+    gap: 8px;
+    margin-left: 0;
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .skill-subtitle {
+    text-align: left;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .organic-background {
+    background-size: 30% auto;
+    -webkit-mask-size: 30% auto;
+    mask-size: 30% auto;
+    background-position: left top;
+    margin-top: 5vh;
+    min-height: auto;
+    padding-bottom: 190px;
+  }
+
+  .content-layer {
+    position: relative;
+    padding-top: 0vh;
+  }
+
+  .custom-align-col {
+    padding-top: 0px !important;
+    align-items: flex-end !important;
+    text-align: right !important;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .skills-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12%;
+    width: 80%;
+  }
+
+  .chips-wrapper {
+    justify-content: flex-end;
+    gap: 8px;
+    margin-left: 0px;
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .skill-subtitle {
+    text-align: right;
+    font-size: 13px;
+  }
+
+  .skill-chip {
+    font-size: 11px !important;
+    height: 26px !important;
+    padding-inline: 10px;
+  }
 }
 </style>

@@ -9,6 +9,9 @@ import neptuneImg from "@/assets/Neptune.svg";
 </template>
 
 <style scoped>
+/* ============================================================
+   1. POSICIONAMENTO
+   ============================================================ */
 .position-neptune {
   position: absolute;
   top: 50%;
@@ -18,28 +21,30 @@ import neptuneImg from "@/assets/Neptune.svg";
   pointer-events: none;
 }
 
+/* ============================================================
+   2. IMAGEM DO PLANETA
+   ============================================================ */
 .planet-neptune {
   width: 100%;
   height: auto;
   filter: drop-shadow(0 0 20px rgba(88, 166, 255, 0.15));
 }
 
+/* ============================================================
+   3. ANIMAÇÃO DE FLUTUAÇÃO
+   ============================================================ */
 @keyframes float {
-
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-
-  50% {
-    transform: translateY(-12px);
-  }
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
 }
 
 .floating {
   animation: float 2s ease-in-out infinite;
 }
 
+/* ============================================================
+   4. RESPONSIVIDADE
+   ============================================================ */
 @media (min-width: 481px) and (max-width: 959px) {
   .position-neptune {
     top: 5%;

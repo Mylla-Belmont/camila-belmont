@@ -52,7 +52,9 @@ import Uranus from "@/components/Uranus.vue";
 </template>
 
 <style scoped>
-/* --- DESIGN, COMPORTAMENTOS DE OVERFLOW E CAMADAS PRESERVADOS --- */
+/* ============================================================
+   1. CONTÊINER PRINCIPAL
+   ============================================================ */
 .relative-container {
   position: relative;
   z-index: 1;
@@ -61,21 +63,9 @@ import Uranus from "@/components/Uranus.vue";
   overflow-y: visible;
 }
 
-/* Mobile: Garante que nada vaze para os lados nas telas touch */
-@media (max-width: 959px) {
-  .relative-container {
-    overflow: hidden;
-  }
-}
-
-/* Desktop: Permite que os planetas vazem para as seções inferiores de forma fluida */
-@media (min-width: 960px) {
-  .relative-container {
-    overflow: visible;
-  }
-}
-
-/* --- TIPOGRAFIA DA HERO SECTION --- */
+/* ============================================================
+   2. TIPOGRAFIA DA HERO SECTION
+   ============================================================ */
 .hello-text {
   font-size: clamp(20px, 3vw, 24px);
   letter-spacing: 1.2px;
@@ -97,7 +87,9 @@ import Uranus from "@/components/Uranus.vue";
   line-height: 1.1 !important;
 }
 
-/* --- COMPONENTES VISUAIS --- */
+/* ============================================================
+   3. COMPONENTES VISUAIS
+   ============================================================ */
 .video-placeholder {
   width: 100%;
   max-width: 580px;
@@ -110,21 +102,32 @@ import Uranus from "@/components/Uranus.vue";
   font-weight: bold;
 }
 
-/* --- ANIMAÇÃO DE ENTRADA SUAVE --- */
+/* ============================================================
+   4. ANIMAÇÃO DE ENTRADA
+   ============================================================ */
 @keyframes fadeSlideIn {
-  from {
-    opacity: 0;
-    transform: translateY(40px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 .v-row {
   position: relative;
   animation: fadeSlideIn 1.2s ease-out;
   z-index: 10;
+}
+
+/* ============================================================
+   5. RESPONSIVIDADE
+   ============================================================ */
+@media (max-width: 959px) {
+  .relative-container {
+    overflow: hidden;
+  }
+}
+
+@media (min-width: 960px) {
+  .relative-container {
+    overflow: visible;
+  }
 }
 </style>

@@ -80,10 +80,16 @@ const rocketStyle = computed(() => {
 </template>
 
 <style scoped>
+/* ============================================================
+   1. CONTÊINER DO FOGUETE
+   ============================================================ */
 .rocket-container {
   pointer-events: none;
 }
 
+/* ============================================================
+   2. IMAGEM DO FOGUETE
+   ============================================================ */
 .rocket-image {
   width: 100%;
   height: auto;

@@ -10,7 +10,9 @@ import marsImg from "@/assets/mars.svg";
 </template>
 
 <style scoped>
-/* --- POSICIONAMENTO E COORDENADAS ORIGINAIS PRESERVADOS --- */
+/* ============================================================
+   1. POSICIONAMENTO
+   ============================================================ */
 .position-mars {
   position: absolute;
   top: 135vh;
@@ -19,29 +21,29 @@ import marsImg from "@/assets/mars.svg";
   z-index: 12;
 }
 
+/* ============================================================
+   2. IMAGEM DO PLANETA
+   ============================================================ */
 .planet-mars {
   width: 100%;
   height: auto;
 }
 
-/* Animação estelar de flutuação */
+/* ============================================================
+   3. ANIMAÇÃO DE FLUTUAÇÃO
+   ============================================================ */
 @keyframes float {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-15px);
-  }
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-15px); }
 }
 
 .floating {
   animation: float 3s ease-in-out infinite;
 }
 
-/* --- MEDIA QUERIES ORIGINAIS (NÃO ALTERADAS) --- */
-
-/* Large screens (> 1920px) */
+/* ============================================================
+   4. RESPONSIVIDADE
+   ============================================================ */
 @media (min-width: 1921px) {
   .position-mars {
     top: 120vh;
@@ -50,7 +52,6 @@ import marsImg from "@/assets/mars.svg";
   }
 }
 
-/* Medium screens (Tablets) */
 @media (min-width: 481px) and (max-width: 960px) {
   .position-mars {
     top: 35vh;
@@ -60,7 +61,6 @@ import marsImg from "@/assets/mars.svg";
   }
 }
 
-/* Mobile */
 @media (max-width: 480px) {
   .position-mars {
     top: 2vh;

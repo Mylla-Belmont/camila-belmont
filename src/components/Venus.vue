@@ -10,7 +10,9 @@ import venusImg from "@/assets/venus.svg";
 </template>
 
 <style scoped>
-/* --- COORDENADAS E PARÂMETROS ORIGINAIS RIGOROSAMENTE PRESERVADOS --- */
+/* ============================================================
+   1. POSICIONAMENTO
+   ============================================================ */
 .position-venus {
   position: absolute;
   top: 70vh;
@@ -19,29 +21,29 @@ import venusImg from "@/assets/venus.svg";
   z-index: 12;
 }
 
+/* ============================================================
+   2. IMAGEM DO PLANETA
+   ============================================================ */
 .planet-venus {
   width: 100%;
   height: auto;
 }
 
-/* Animação estelar de flutuação */
+/* ============================================================
+   3. ANIMAÇÃO DE FLUTUAÇÃO
+   ============================================================ */
 @keyframes float {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-15px);
-  }
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-15px); }
 }
 
 .floating {
   animation: float 2s ease-in-out infinite;
 }
 
-/* --- MEDIA QUERIES ORIGINAIS (NÃO ALTERADAS) --- */
-
-/* Large screens (> 1920px) */
+/* ============================================================
+   4. RESPONSIVIDADE
+   ============================================================ */
 @media (min-width: 1921px) {
   .position-venus {
     top: 55vh;
@@ -50,7 +52,6 @@ import venusImg from "@/assets/venus.svg";
   }
 }
 
-/* Medium screens (Tablets) */
 @media (min-width: 481px) and (max-width: 960px) {
   .position-venus {
     top: 12vh;
@@ -60,7 +61,6 @@ import venusImg from "@/assets/venus.svg";
   }
 }
 
-/* Mobile */
 @media (max-width: 480px) {
   .position-venus {
     top: 25vh;

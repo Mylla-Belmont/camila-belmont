@@ -118,7 +118,9 @@ onUnmounted(() => {
 </template>
 
 <style scoped>
-/* Adicionado escopo correto para o contêiner de estrelas */
+/* ============================================================
+   1. CONTÊINER DE ESTRELAS
+   ============================================================ */
 .stars-container {
   position: absolute !important;
   top: 0;
@@ -126,10 +128,12 @@ onUnmounted(() => {
   width: 100%;
   height: 100%;
   pointer-events: none;
-  /* Estrelas não podem bloquear cliques do usuário */
   z-index: 0;
 }
 
+/* ============================================================
+   2. ESTRELAS INDIVIDUAIS
+   ============================================================ */
 .floating-star {
   position: absolute;
   width: 24px;

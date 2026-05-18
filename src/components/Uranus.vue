@@ -10,7 +10,9 @@ import uranusImg from "@/assets/uranus.svg";
 </template>
 
 <style scoped>
-/* --- COORDENADAS E PARÂMETROS ORIGINAIS RIGOROSAMENTE PRESERVADOS --- */
+/* ============================================================
+   1. POSICIONAMENTO
+   ============================================================ */
 .position-uranus {
   position: absolute;
   top: 90vh;
@@ -19,29 +21,29 @@ import uranusImg from "@/assets/uranus.svg";
   z-index: 12;
 }
 
+/* ============================================================
+   2. IMAGEM DO PLANETA
+   ============================================================ */
 .planet-uranus {
   width: 100%;
   height: auto;
 }
 
-/* Animação de órbita fluida */
+/* ============================================================
+   3. ANIMAÇÃO DE FLUTUAÇÃO
+   ============================================================ */
 @keyframes float {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-15px);
-  }
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-15px); }
 }
 
 .floating {
   animation: float 4s ease-in-out infinite;
 }
 
-/* --- MEDIA QUERIES ORIGINAIS (NÃO ALTERADAS) --- */
-
-/* Large screens (> 1920px) */
+/* ============================================================
+   4. RESPONSIVIDADE
+   ============================================================ */
 @media (min-width: 1921px) {
   .position-uranus {
     top: 75vh;
@@ -50,7 +52,6 @@ import uranusImg from "@/assets/uranus.svg";
   }
 }
 
-/* Medium screens (Tablets) */
 @media (min-width: 481px) and (max-width: 960px) {
   .position-uranus {
     top: 12vh;
@@ -60,7 +61,6 @@ import uranusImg from "@/assets/uranus.svg";
   }
 }
 
-/* Mobile */
 @media (max-width: 480px) {
   .position-uranus {
     top: 40vh;

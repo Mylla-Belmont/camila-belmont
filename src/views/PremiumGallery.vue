@@ -238,13 +238,18 @@ onUnmounted(() => {
 </template>
 
 <style scoped>
+/* ============================================================
+   1. SEÇÃO PRINCIPAL E VETORES DE CENA
+   ============================================================ */
 .gallery-section {
   width: 100%;
   padding: 160px 0;
   position: relative;
+  display: flex;
+  flex-direction: column;
+  background-color: transparent;
 }
 
-/* --- VECTOR 4 (CANTO DIREITO) --- */
 .scenery-vector-4 {
   position: absolute;
   top: -100px;
@@ -260,11 +265,29 @@ onUnmounted(() => {
   height: auto;
 }
 
+/* ============================================================
+   2. CABEÇALHO
+   ============================================================ */
 .header-content {
   position: relative;
   z-index: 5;
 }
 
+.custom-name {
+  font-size: clamp(32px, 6vw, 42px);
+  font-weight: 800;
+  letter-spacing: 1.5px;
+}
+
+.custom-text {
+  font-size: clamp(14px, 2vw, 16px);
+  letter-spacing: 1.2px;
+  opacity: 0.9;
+}
+
+/* ============================================================
+   3. MODO CARROSSEL (GALERIA DESLIZANTE)
+   ============================================================ */
 .gallery-container {
   position: relative;
   padding: 0 2%;
@@ -303,18 +326,6 @@ onUnmounted(() => {
   will-change: transform;
 }
 
-.custom-name {
-  font-size: clamp(32px, 6vw, 42px);
-  font-weight: 800;
-  letter-spacing: 1.5px;
-}
-
-.custom-text {
-  font-size: clamp(14px, 2vw, 16px);
-  letter-spacing: 1.2px;
-  opacity: 0.9;
-}
-
 .gallery-item {
   flex-shrink: 0;
   border-radius: 20px;
@@ -348,6 +359,16 @@ onUnmounted(() => {
   cursor: pointer;
 }
 
+.item-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 50%;
+  background: transparent !important;
+  pointer-events: none;
+}
+
 .tool-chip {
   position: absolute;
   bottom: 12px;
@@ -355,7 +376,48 @@ onUnmounted(() => {
   z-index: 3;
 }
 
-/* --- DIALOG PREVIEW ADAPTÁVEL --- */
+/* ============================================================
+   4. MODO GALERIA COMPLETA (GRID)
+   ============================================================ */
+.full-gallery {
+  padding: 0 6%;
+  position: relative;
+  z-index: 10;
+}
+
+.full-gallery-grid {
+  margin: 0 -12px;
+}
+
+.full-gallery-card {
+  border-radius: 16px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+  aspect-ratio: 16 / 10;
+  position: relative;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.full-gallery-card:hover {
+  transform: scale(1.02);
+}
+
+.full-gallery-image-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.full-gallery-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ============================================================
+   5. MODAL DE PREVIEW (v-dialog)
+   ============================================================ */
 .preview-card {
   background: transparent !important;
   overflow: visible !important;
@@ -402,18 +464,9 @@ onUnmounted(() => {
   border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
-/* --- TRANSITIONS --- */
-.gallery-fade-enter-active,
-.gallery-fade-leave-active {
-  transition: opacity 0.4s ease;
-}
-
-.gallery-fade-enter-from,
-.gallery-fade-leave-to {
-  opacity: 0;
-}
-
-/* --- NOVO ESTILO: BOTÃO CÓSMICO GLASSMORPHISM --- */
+/* ============================================================
+   6. BOTÕES E ELEMENTOS GLOBAIS
+   ============================================================ */
 .cosmic-gallery-btn {
   text-transform: none !important;
   letter-spacing: 1.5px;
@@ -422,13 +475,10 @@ onUnmounted(() => {
   height: 54px !important;
   padding: 0 32px !important;
   border-radius: 30px !important;
-
-  /* Efeito de Vidro Espacial Neutro */
   background: rgba(255, 255, 255, 0.04) !important;
   border: 1px solid rgba(255, 255, 255, 0.15) !important;
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-
   box-shadow: 0 2px 16px 0 rgba(0, 0, 0, 0.16);
   transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1) !important;
 }
@@ -452,70 +502,22 @@ onUnmounted(() => {
   transform: scale(1.2);
 }
 
-/* --- ESTILO DA NOVA PÁGINA (GRID COMPLETO) --- */
-.full-gallery {
-  padding: 0 6%;
-  position: relative;
-  z-index: 10;
+/* ============================================================
+   7. TRANSIÇÕES
+   ============================================================ */
+.gallery-fade-enter-active,
+.gallery-fade-leave-active {
+  transition: opacity 0.4s ease;
 }
 
-.full-gallery-header {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  margin-bottom: 40px;
+.gallery-fade-enter-from,
+.gallery-fade-leave-to {
+  opacity: 0;
 }
 
-.back-btn {
-  font-size: 14px;
-  letter-spacing: 0.8px;
-  text-transform: none !important;
-  margin-bottom: 16px;
-  padding-left: 0 !important;
-  opacity: 0.8;
-}
-
-.back-btn:hover {
-  opacity: 1;
-}
-
-.full-gallery-title {
-  font-size: clamp(26px, 4vw, 36px);
-  font-weight: 800;
-  letter-spacing: 1.5px;
-}
-
-.full-gallery-grid {
-  margin: 0 -12px;
-}
-
-.full-gallery-card {
-  border-radius: 16px;
-  overflow: hidden;
-  cursor: pointer;
-  transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
-  aspect-ratio: 16 / 10;
-  position: relative;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-}
-
-.full-gallery-card:hover {
-  transform: scale(1.02);
-}
-
-.full-gallery-image-wrapper {
-  position: relative;
-  width: 100%;
-  height: 100%;
-}
-
-.full-gallery-image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-/* --- RESPONSIVIDADE MOBILE --- */
+/* ============================================================
+   8. RESPONSIVIDADE MOBILE
+   ============================================================ */
 @media (max-width: 959px) {
   .scenery-vector-4 {
     width: 50%;

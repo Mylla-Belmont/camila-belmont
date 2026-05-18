@@ -9,6 +9,9 @@ import moonImg from "@/assets/Moon.svg";
 </template>
 
 <style scoped>
+/* ============================================================
+   1. POSICIONAMENTO
+   ============================================================ */
 .position-moon {
   position: absolute;
   top: 40%;
@@ -18,28 +21,30 @@ import moonImg from "@/assets/Moon.svg";
   pointer-events: none;
 }
 
+/* ============================================================
+   2. IMAGEM DO PLANETA
+   ============================================================ */
 .planet-moon {
   width: 100%;
   height: auto;
   filter: drop-shadow(0 0 20px rgba(255, 214, 108, 0.12));
 }
 
+/* ============================================================
+   3. ANIMAÇÃO DE FLUTUAÇÃO
+   ============================================================ */
 @keyframes float {
-
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-
-  50% {
-    transform: translateY(-12px);
-  }
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
 }
 
 .floating {
   animation: float 6s ease-in-out infinite;
 }
 
+/* ============================================================
+   4. RESPONSIVIDADE
+   ============================================================ */
 @media (min-width: 481px) and (max-width: 959px) {
   .position-moon {
     top: 10%;

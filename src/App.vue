@@ -58,7 +58,9 @@ onUnmounted(() => {
 </template>
 
 <style>
-/* Configurações de CSS globais obrigatórias para o Lenis funcionar com perfeição */
+/* ============================================================
+   1. LENIS — SCROLL SUAVE
+   ============================================================ */
 html.lenis,
 html.lenis body {
   height: auto;
@@ -66,7 +68,6 @@ html.lenis body {
 
 .lenis.lenis-smooth {
   scroll-behavior: auto !important;
-  /* Desativa o smooth nativo para não conflitar com o Lenis */
 }
 
 .lenis.lenis-smooth [data-lenis-prevent] {
@@ -81,6 +82,9 @@ html.lenis body {
   pointer-events: none;
 }
 
+/* ============================================================
+   2. GLOBAIS
+   ============================================================ */
 html {
   overflow-x: hidden;
 }

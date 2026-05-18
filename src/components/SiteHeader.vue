@@ -85,6 +85,9 @@ function onMenuClick(label: string) {
 </template>
 
 <style scoped>
+/* ============================================================
+   1. BOTÕES DO MENU
+   ============================================================ */
 .custom-btn {
   font-size: 14px;
   letter-spacing: 1px;
@@ -92,12 +95,18 @@ function onMenuClick(label: string) {
   font-weight: 500;
 }
 
+/* ============================================================
+   2. MENU DRAWER (MOBILE)
+   ============================================================ */
 .custom-drawer-item {
   font-size: 16px;
   letter-spacing: 1px;
   text-transform: capitalize;
 }
 
+/* ============================================================
+   3. AJUSTE DO TOOLBAR CONTAINER
+   ============================================================ */
 .v-toolbar__content > .v-container {
   height: 100%;
   max-width: 100%;

@@ -31,6 +31,9 @@ import Stars from "@/components/Stars.vue";
 </template>
 
 <style scoped>
+/* ============================================================
+   1. CONTÊINER PRINCIPAL
+   ============================================================ */
 .skills-wrapper,
 .relative-container {
   overflow: hidden;
@@ -42,6 +45,9 @@ import Stars from "@/components/Stars.vue";
   z-index: 0;
 }
 
+/* ============================================================
+   2. FUNDO ORGÂNICO (VECTOR 2)
+   ============================================================ */
 .organic-background {
   background-image: url("@/assets/Vector 2@2x.svg");
   background-size: auto;
@@ -52,23 +58,37 @@ import Stars from "@/components/Stars.vue";
   background-repeat: no-repeat;
 }
 
-/* --- MEDIA QUERIES E DISTÂNCIAS EXATAS PRESERVADAS --- */
+/* ============================================================
+   3. TIPOGRAFIA
+   ============================================================ */
+.about-name {
+  font-size: clamp(24px, 5vw, 32px);
+  letter-spacing: 1.2px;
+  font-weight: 700;
+}
 
-/* Medium screens */
+.about-text {
+  font-size: clamp(12px, 1.8vw, 15px);
+  letter-spacing: 1px;
+  line-height: 1.7;
+  font-weight: 400;
+}
+
+/* ============================================================
+   4. RESPONSIVIDADE
+   ============================================================ */
 @media (min-width: 481px) and (max-width: 959px) {
   .custom-align-col {
     padding-top: 15vh !important;
   }
 }
 
-/* Mobile */
 @media (max-width: 480px) {
   .custom-align-col {
     padding-top: 100px !important;
   }
 }
 
-/* Desktop standard */
 @media (min-width: 960px) {
   .organic-background {
     background-size: cover;
@@ -82,24 +102,9 @@ import Stars from "@/components/Stars.vue";
   }
 }
 
-/* Large screens (> 1920px) */
 @media (min-width: 1921px) {
   .custom-align-col {
     padding-top: min(25vh, 350px) !important;
   }
-}
-
-/* --- TIPOGRAFIA --- */
-.about-name {
-  font-size: clamp(24px, 5vw, 32px);
-  letter-spacing: 1.2px;
-  font-weight: 700;
-}
-
-.about-text {
-  font-size: clamp(12px, 1.8vw, 15px);
-  letter-spacing: 1px;
-  line-height: 1.7;
-  font-weight: 400;
 }
 </style>
