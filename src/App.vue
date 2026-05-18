@@ -7,6 +7,7 @@ import HelloMain from "./views/HelloMain.vue";
 import AboutMe from "./views/AboutMe.vue";
 import Skills from "./views/Skills.vue";
 import PremiumGallery from "./views/PremiumGallery.vue";
+import Projects from "./views/Projects.vue";
 import Contact from "./views/Contact.vue";
 
 let lenis: Lenis | null = null;
@@ -49,6 +50,7 @@ onUnmounted(() => {
         <AboutMe />
         <Skills />
         <PremiumGallery />
+        <Projects />
         <Contact />
       </v-container>
     </v-main>

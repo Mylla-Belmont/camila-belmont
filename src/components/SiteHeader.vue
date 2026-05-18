@@ -7,6 +7,7 @@ const sectionMap: Record<string, string> = {
   "About me": "about-me",
   Skills: "skills",
   Portfolio: "portfolio",
+  Projects: "projects",
   Contact: "contact"
 };
 
