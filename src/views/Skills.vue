@@ -245,47 +245,48 @@ onUnmounted(() => {
 /* --- AJUSTE DISPOSITIVOS PEQUENOS (MOBILE CORRIGIDO) --- */
 @media (max-width: 480px) {
   .organic-background {
-    background-size: 100% auto;
+    background-size: 30% auto;
     -webkit-mask-size: 30% auto;
     mask-size: 30% auto;
     background-position: left top;
     margin-top: 5vh;
     min-height: auto;
-    padding-bottom: 60px;
+    padding-bottom: 190px;
   }
 
   .content-layer {
     position: relative;
-    padding-top: 28vh;
+    padding-top: 0vh;
     /* Empurra o conteúdo para baixo do desenho da onda */
   }
 
   .custom-align-col {
     padding-top: 0px !important;
-    align-items: flex-start !important;
+    align-items: flex-end !important;
     /* Esquerda */
-    text-align: left !important;
+    text-align: right !important;
     /* Esquerda */
     width: 100%;
     max-width: 100%;
   }
 
   .skills-grid {
+    display: grid;
     grid-template-columns: 1fr;
-    gap: 28px;
+    gap: 12%;
+    width: 80%;
   }
 
   .chips-wrapper {
-    justify-content: flex-start;
-    /* Esquerda */
+    justify-content: flex-end;
     gap: 8px;
-    margin-left: 0;
+    margin-left: 0px;
     max-width: 100%;
     width: 100%;
   }
 
   .skill-subtitle {
-    text-align: left;
+    text-align: right;
     font-size: 13px;
   }
 

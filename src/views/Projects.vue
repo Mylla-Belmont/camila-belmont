@@ -81,7 +81,7 @@ function closeDialog() {
     </div>
     <v-container fluid class="pa-0 content-layer">
       <v-container class="px-5 px-md-16 py-0">
-        <v-row class="pt-12 pt-sm-16 header-row" align="start" justify="center">
+        <v-row class="header-row" align="start" justify="center">
           <v-col cols="12" class="text-center text-md-left mb-8 mb-md-12">
             <div class="custom-name text-secondary">Projects</div>
             <div class="custom-text text-secondary mt-2">
@@ -91,32 +91,12 @@ function closeDialog() {
         </v-row>
 
         <v-row class="projects-row" justify="center">
-          <v-col
-            v-for="project in projects"
-            :key="project.id"
-            cols="12"
-            sm="6"
-            class="d-flex"
-          >
-            <v-card
-              class="project-card"
-              elevation="0"
-              @click="openProject(project)"
-            >
+          <v-col v-for="project in projects" :key="project.id" cols="12" sm="6" class="d-flex">
+            <v-card class="project-card" elevation="0" @click="openProject(project)">
               <div class="card-image-wrapper">
-                <img
-                  :src="project.imageUrl"
-                  :alt="project.title"
-                  class="card-image"
-                  loading="lazy"
-                />
+                <img :src="project.imageUrl" :alt="project.title" class="card-image" loading="lazy" />
                 <div class="card-chip-overlay">
-                  <v-chip
-                    size="x-small"
-                    variant="flat"
-                    class="overlay-chip"
-                    label
-                  >
+                  <v-chip size="x-small" variant="flat" class="overlay-chip" label>
                     {{ project.tags[0] }}
                   </v-chip>
                 </div>
@@ -127,14 +107,8 @@ function closeDialog() {
                   {{ project.description }}
                 </p>
                 <div class="card-tags-row">
-                  <v-chip
-                    v-for="tag in project.tags"
-                    :key="tag"
-                    size="x-small"
-                    variant="outlined"
-                    class="tag-chip"
-                    label
-                  >
+                  <v-chip v-for="tag in project.tags" :key="tag" size="x-small" variant="outlined" class="tag-chip"
+                    label>
                     {{ tag }}
                   </v-chip>
                 </div>
@@ -145,46 +119,22 @@ function closeDialog() {
       </v-container>
     </v-container>
 
-    <v-dialog
-      v-model="dialogOpen"
-      max-width="800"
-      transition="dialog-bottom-transition"
-    >
-      <v-card
-        v-if="selectedProject"
-        class="dialog-card"
-        elevation="0"
-        color="#111"
-      >
-        <v-btn
-          icon
-          variant="text"
-          class="dialog-close-btn"
-          @click="closeDialog"
-        >
+    <v-dialog v-model="dialogOpen" max-width="800" transition="dialog-bottom-transition">
+      <v-card v-if="selectedProject" class="dialog-card" elevation="0" color="#111">
+        <v-btn icon variant="text" class="dialog-close-btn" @click="closeDialog">
           <v-icon color="secondary" size="28">mdi-close</v-icon>
         </v-btn>
         <div class="dialog-layout">
           <div class="dialog-image-container">
-            <img
-              :src="selectedProject.imageUrl"
-              :alt="selectedProject.title"
-              class="dialog-image"
-            />
+            <img :src="selectedProject.imageUrl" :alt="selectedProject.title" class="dialog-image" />
           </div>
           <div class="dialog-body">
             <h2 class="dialog-title text-secondary">
               {{ selectedProject.title }}
             </h2>
             <div class="dialog-tags mb-4">
-              <v-chip
-                v-for="tag in selectedProject.tags"
-                :key="tag"
-                size="small"
-                variant="outlined"
-                class="tag-chip"
-                label
-              >
+              <v-chip v-for="tag in selectedProject.tags" :key="tag" size="small" variant="outlined" class="tag-chip"
+                label>
                 {{ tag }}
               </v-chip>
             </div>
@@ -241,6 +191,7 @@ function closeDialog() {
     opacity: 0;
     transform: translateY(40px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);

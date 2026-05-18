@@ -48,7 +48,7 @@ const rocketStyle = computed(() => {
   } else {
     /* Mobile path */
     startX = -15;
-    startY = 45;
+    startY = 35;
     endX = 75;
     endY = -10;
     baseRotation = -20;

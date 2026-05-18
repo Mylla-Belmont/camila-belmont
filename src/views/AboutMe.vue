@@ -64,7 +64,7 @@ import Stars from "@/components/Stars.vue";
 /* Mobile */
 @media (max-width: 480px) {
   .custom-align-col {
-    padding-top: 40px !important;
+    padding-top: 100px !important;
   }
 }
 
