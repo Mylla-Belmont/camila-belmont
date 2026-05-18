@@ -46,6 +46,7 @@ const trackRef = ref<HTMLElement | null>(null);
 const isHovering = ref(false);
 const hoverDirection = ref<"left" | "right" | null>(null);
 const dialogOpen = ref(false);
+const showFullGallery = ref(false);
 const selectedItem = ref<GalleryItem | null>(null);
 
 const itemWidth = ref(300);
@@ -121,6 +122,19 @@ function openPreview(item: GalleryItem) {
   dialogOpen.value = true;
 }
 
+// Lógica para rolar a tela suavemente até a seção quando recolher a galeria
+function toggleGallery(status: boolean) {
+  showFullGallery.value = status;
+  if (!status) {
+    setTimeout(() => {
+      const element = document.getElementById("portfolio");
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    }, 100);
+  }
+}
+
 onMounted(() => {
   updateDimensions();
   window.addEventListener("resize", updateDimensions);
@@ -136,12 +150,11 @@ onUnmounted(() => {
 <template>
   <section id="portfolio" class="gallery-section">
     <div class="scenery-vector-4">
-      <img :src="vector4" alt="Background Scene" />
+      <img :src="vector4" alt="Background Scene Right" />
     </div>
 
-    <Jupiter />
     <Stars />
-    <AsteroidBelt />
+    <Jupiter />
 
     <v-row class="ml-2 ml-sm-6 pt-12 pt-sm-16 header-content" align="start" justify="start">
       <v-col cols="12" sm="10" md="8" lg="6" class="ml-4 ml-sm-8 ml-md-16">
@@ -152,32 +165,70 @@ onUnmounted(() => {
       </v-col>
     </v-row>
 
-    <div class="gallery-container">
-      <div class="nav-zone zone-left" @mouseenter="hoverDirection = 'left'" @mouseleave="hoverDirection = null" />
+    <transition name="gallery-fade" mode="out-in">
+      <div v-if="!showFullGallery" key="carousel">
+        <div class="gallery-container">
+          <div class="nav-zone zone-left" @mouseenter="hoverDirection = 'left'" @mouseleave="hoverDirection = null" />
+          <div class="nav-zone zone-right" @mouseenter="hoverDirection = 'right'" @mouseleave="hoverDirection = null" />
 
-      <div class="nav-zone zone-right" @mouseenter="hoverDirection = 'right'" @mouseleave="hoverDirection = null" />
-
-      <div class="gallery-viewport" @mouseenter="isHovering = true" @mouseleave="isHovering = false">
-        <div ref="trackRef" class="gallery-track">
-          <div v-for="(item, idx) in displayItems" :key="idx" class="gallery-item"
-            :style="{ width: `${itemWidth}px`, height: `${itemHeight}px` }">
-            <div class="gallery-image-wrapper">
-              <img :src="item.imageUrl" :alt="item.title" class="gallery-image" loading="lazy" @contextmenu.prevent
-                @dragstart.prevent />
-              <div class="protection-shield" @click="openPreview(item)" />
-              <div class="item-overlay" />
-              <v-chip :color="getToolColor(item.tool)" size="x-small" variant="flat" class="tool-chip" label>
-                {{ item.tool }}
-              </v-chip>
+          <div class="gallery-viewport" @mouseenter="isHovering = true" @mouseleave="isHovering = false">
+            <div ref="trackRef" class="gallery-track">
+              <div v-for="(item, idx) in displayItems" :key="idx" class="gallery-item"
+                :style="{ width: `${itemWidth}px`, height: `${itemHeight}px` }">
+                <div class="gallery-image-wrapper">
+                  <img :src="item.imageUrl" :alt="item.title" class="gallery-image" loading="lazy" @contextmenu.prevent
+                    @dragstart.prevent />
+                  <div class="protection-shield" @click="openPreview(item)" />
+                  <div class="item-overlay" />
+                  <v-chip :color="getToolColor(item.tool)" size="x-small" variant="flat" class="tool-chip" label>
+                    {{ item.tool }}
+                  </v-chip>
+                </div>
+              </div>
             </div>
           </div>
         </div>
+
+        <div class="text-center mt-12 mb-4">
+          <v-btn class="cosmic-gallery-btn text-primary" size="large" @click="toggleGallery(true)">
+            <span>Ver Galeria Completa</span>
+            <v-icon class="ml-2 icon-transition" size="20">mdi-chevron-down</v-icon>
+          </v-btn>
+        </div>
       </div>
-    </div>
+
+      <div v-else key="full" class="full-gallery">
+        <div class="full-gallery-header">
+          <v-btn variant="text" class="back-btn text-primary" @click="toggleGallery(false)">
+            <v-icon class="mr-2">mdi-arrow-left</v-icon>
+            Voltar para o Portfólio
+          </v-btn>
+          <div class="full-gallery-title text-primary">Todas as Ilustrações</div>
+        </div>
+
+        <v-row class="full-gallery-grid">
+          <v-col v-for="item in galleryItems" :key="item.id" cols="12" sm="6" class="pa-3">
+            <div class="full-gallery-card" @click="openPreview(item)">
+              <div class="full-gallery-image-wrapper">
+                <img :src="item.imageUrl" :alt="item.title" class="full-gallery-image" loading="lazy"
+                  @contextmenu.prevent @dragstart.prevent />
+                <div class="protection-shield" />
+              </div>
+            </div>
+          </v-col>
+        </v-row>
+
+        <div class="text-center mt-12 mb-8">
+          <v-btn class="cosmic-gallery-btn text-primary active" size="large" @click="toggleGallery(false)">
+            <span>Recolher Galeria</span>
+            <v-icon class="ml-2 icon-transition" size="20">mdi-chevron-up</v-icon>
+          </v-btn>
+        </div>
+      </div>
+    </transition>
 
     <v-dialog v-model="dialogOpen" width="auto" max-width="90vw" transition="scale-transition">
       <v-card v-if="selectedItem" class="preview-card" elevation="24" color="transparent">
-
         <div class="preview-content">
           <div class="preview-image-container">
             <div class="close-btn-wrapper">
@@ -185,12 +236,10 @@ onUnmounted(() => {
                 <v-icon color="white" size="24">mdi-close</v-icon>
               </v-btn>
             </div>
-
             <img :src="selectedItem.imageUrl" class="preview-image" @contextmenu.prevent @dragstart.prevent />
             <div class="protection-shield" />
           </div>
         </div>
-
       </v-card>
     </v-dialog>
   </section>
@@ -198,19 +247,20 @@ onUnmounted(() => {
 
 <style scoped>
 .gallery-section {
-  margin-top: 0vh;
-  padding: 200px 0;
+  width: 100%;
+  padding: 160px 0;
   position: relative;
-  overflow-y: visible !important;
 }
 
+/* --- VECTOR 4 (CANTO DIREITO) --- */
 .scenery-vector-4 {
   position: absolute;
-  top: -200px;
+  top: -100px;
   right: 0;
   width: 20%;
-  max-width: 800px;
+  max-width: 600px;
   pointer-events: none;
+  z-index: 1;
 }
 
 .scenery-vector-4 img {
@@ -235,7 +285,6 @@ onUnmounted(() => {
   bottom: 0;
   width: 10%;
   z-index: 100;
-  cursor: w-resize;
 }
 
 .zone-left {
@@ -263,26 +312,27 @@ onUnmounted(() => {
 }
 
 .custom-name {
-  font-size: clamp(28px, 6vw, 40px);
-  font-weight: bold;
-  letter-spacing: 1.7px;
+  font-size: clamp(32px, 6vw, 42px);
+  font-weight: 800;
+  letter-spacing: 1.5px;
 }
 
 .custom-text {
-  font-size: clamp(13px, 2vw, 14px);
-  letter-spacing: 1.7px;
+  font-size: clamp(14px, 2vw, 16px);
+  letter-spacing: 1.2px;
+  opacity: 0.9;
 }
 
 .gallery-item {
   flex-shrink: 0;
-  border-radius: 16px;
+  border-radius: 20px;
   overflow: hidden;
   cursor: pointer;
-  transition: transform 0.4s ease;
+  transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
 .gallery-item:hover {
-  transform: scale(1.05);
+  transform: scale(1.04);
 }
 
 .gallery-image-wrapper {
@@ -295,27 +345,15 @@ onUnmounted(() => {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  -webkit-touch-callout: none;
-  -webkit-user-drag: none;
   user-select: none;
-  -webkit-user-select: none;
 }
 
 .protection-shield {
   position: absolute;
   inset: 0;
-  z-index: 2;
+  z-index: 20;
+  background: transparent;
   cursor: pointer;
-}
-
-.item-overlay {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 50%;
-  background: transparent !important;
-  pointer-events: none;
 }
 
 .tool-chip {
@@ -325,11 +363,10 @@ onUnmounted(() => {
   z-index: 3;
 }
 
-/* --- CONTAINER MESTRE (ABRACE O CONTEÚDO) --- */
+/* --- DIALOG PREVIEW ADAPTÁVEL --- */
 .preview-card {
   background: transparent !important;
   overflow: visible !important;
-  /* Permite que o botão de fechar fique ligeiramente para fora se desejar */
 }
 
 .preview-content {
@@ -339,35 +376,25 @@ onUnmounted(() => {
   width: 100%;
 }
 
-/* --- O CONTAINER DA IMAGEM SE ADAPTA AO TAMANHO DELA --- */
 .preview-image-container {
   position: relative;
   display: inline-block;
-  /* Elemento se molda exatamente ao tamanho do conteúdo */
   max-height: 85vh;
-  /* Garante que a imagem nunca ultrapasse o limite vertical da tela */
   border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
-  /* Sombra pesada para destacar a arte do fundo */
   background-color: #1a1a1a;
-  /* Fundo interno neutro para o carregamento */
 }
 
-/* --- A IMAGEM REAL --- */
 .preview-image {
   display: block;
   max-width: 100%;
   max-height: 85vh;
-  /* Sincronizado com o container */
   object-fit: contain;
-  /* Mantém a proporção exata da ilustração original sem esticar */
 }
 
-/* --- BOTÃO DE FECHAR ANCORADO NA ARTE --- */
 .close-btn-wrapper {
   position: absolute;
-  /* Fica preso ao topo direito da imagem, não importa a largura dela */
   top: 12px;
   right: 12px;
   z-index: 1000;
@@ -376,87 +403,150 @@ onUnmounted(() => {
 
 .close-btn {
   background: rgba(0, 0, 0, 0.5) !important;
-  /* Fundo escuro para dar contraste mesmo em artes claras */
   backdrop-filter: blur(8px);
   border-radius: 50% !important;
   width: 36px !important;
   height: 36px !important;
   border: 1px solid rgba(255, 255, 255, 0.2);
-  transition: background 0.2s ease;
 }
 
-.close-btn:hover {
-  background: rgba(0, 0, 0, 0.8) !important;
+/* --- TRANSITIONS --- */
+.gallery-fade-enter-active,
+.gallery-fade-leave-active {
+  transition: opacity 0.4s ease;
 }
 
-/* --- ESCUDO DE PROTEÇÃO --- */
-.protection-shield {
-  position: absolute;
-  top: 0;
-  left: 0;
+.gallery-fade-enter-from,
+.gallery-fade-leave-to {
+  opacity: 0;
+}
+
+/* --- NOVO ESTILO: BOTÃO CÓSMICO GLASSMORPHISM --- */
+.cosmic-gallery-btn {
+  text-transform: none !important;
+  letter-spacing: 1.5px;
+  font-weight: 500;
+  font-size: 15px !important;
+  height: 54px !important;
+  padding: 0 32px !important;
+  border-radius: 30px !important;
+
+  /* Efeito de Vidro Espacial Neutro */
+  background: rgba(255, 255, 255, 0.04) !important;
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+
+  box-shadow: 0 2px 16px 0 rgba(0, 0, 0, 0.16);
+  transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1) !important;
+}
+
+.cosmic-gallery-btn:hover {
+  background: rgba(255, 255, 255, 0.12) !important;
+  border-color: rgba(255, 255, 255, 0.5) !important;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.2), inset 0 0 12px rgba(255, 255, 255, 0.1);
+  transform: translateY(-2px);
+}
+
+.cosmic-gallery-btn:active {
+  transform: translateY(1px);
+}
+
+.icon-transition {
+  transition: transform 0.3s ease;
+}
+
+.cosmic-gallery-btn:hover .icon-transition {
+  transform: scale(1.2);
+}
+
+/* --- ESTILO DA NOVA PÁGINA (GRID COMPLETO) --- */
+.full-gallery {
+  padding: 0 6%;
+  position: relative;
+  z-index: 10;
+}
+
+.full-gallery-header {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 40px;
+}
+
+.back-btn {
+  font-size: 14px;
+  letter-spacing: 0.8px;
+  text-transform: none !important;
+  margin-bottom: 16px;
+  padding-left: 0 !important;
+  opacity: 0.8;
+}
+
+.back-btn:hover {
+  opacity: 1;
+}
+
+.full-gallery-title {
+  font-size: clamp(26px, 4vw, 36px);
+  font-weight: 800;
+  letter-spacing: 1.5px;
+}
+
+.full-gallery-grid {
+  margin: 0 -12px;
+}
+
+.full-gallery-card {
+  border-radius: 16px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+  aspect-ratio: 16 / 10;
+  position: relative;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.full-gallery-card:hover {
+  transform: scale(1.02);
+}
+
+.full-gallery-image-wrapper {
+  position: relative;
   width: 100%;
   height: 100%;
-  z-index: 20;
-  background: transparent;
 }
 
-/* --- RESPONSIVIDADE PARA CELULARES --- */
+.full-gallery-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* --- RESPONSIVIDADE MOBILE --- */
 @media (max-width: 959px) {
+  .scenery-vector-4 {
+    width: 50%;
+  }
+
+  .full-gallery {
+    padding: 0 4%;
+  }
 
   .preview-image-container,
   .preview-image {
     max-height: 75vh;
-    /* No mobile, reduz o tamanho vertical para caber confortavelmente */
   }
 
   .close-btn {
     width: 32px !important;
     height: 32px !important;
   }
-}
 
-/* --- AJUSTE PARA ECRÃS PEQUENOS (TELEMÓVEIS) --- */
-@media (max-width: 959px) {
-  .preview-image-container {
-    max-width: 95vw;
-    /* No telemóvel, aproveita melhor o espaço lateral */
-    max-height: 60vh;
-    /* Diminui um pouco a altura para sobrar espaço para o texto abaixo */
-  }
-}
-
-.preview-image {
-  -webkit-touch-callout: none;
-  -webkit-user-drag: none;
-  user-select: none;
-  -webkit-user-select: none;
-}
-
-.gallery-section {
-  position: relative;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  background-color: transparent;
-}
-
-.gallery-section {
-  overflow-y: visible !important;
-}
-
-@media (max-width: 959px) {
-  .scenery-vector-4 {
-    width: 80%;
-    top: -20px;
-  }
-
-  .scenery-vector-6 {
-    width: 60%;
-    top: -10px;
-  }
-
-  .nav-zone {
-    width: 15%;
+  .cosmic-gallery-btn {
+    height: 48px !important;
+    padding: 0 24px !important;
+    font-size: 14px !important;
   }
 }
 </style>
