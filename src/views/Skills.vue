@@ -149,8 +149,8 @@ onUnmounted(() => {
 /* --- CAMADA DO CONTEÚDO (Isolada para evitar cortes) --- */
 .content-layer {
   position: absolute;
-  top: 0;
-  left: 0;
+  top: 40%;
+  right: 10%;
   width: 100%;
   height: 100%;
   pointer-events: none;
@@ -171,8 +171,8 @@ onUnmounted(() => {
 .skills-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 40px;
-  width: 100%;
+  gap: 5%;
+  width: 120%;
 }
 
 .skill-group {
@@ -298,7 +298,7 @@ onUnmounted(() => {
 
 /* --- CLASSES DE ACABAMENTO E TIPOGRAFIA --- */
 .formation-name {
-  font-size: clamp(24px, 4vw, 42px);
+  font-size: clamp(24px, 4vw, 32px);
   letter-spacing: 1.2px;
   font-weight: 700;
 }
