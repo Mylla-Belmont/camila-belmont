@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import { ref, computed, onMounted, onUnmounted } from "vue";
-// Importação do novo vetor de cenário
 import vector4 from "@/assets/Vector 4@2x.svg";
+import Jupiter from "@/components/Jupiter.vue";
+import Stars from "@/components/Stars.vue";
 
 interface GalleryItem {
   id: number;
@@ -112,11 +113,14 @@ onUnmounted(() => {
 
 <template>
   <section id="portfolio" class="gallery-section">
-    <!-- <div class="scenery-vector-4">
+    <div class="scenery-vector-4">
       <img :src="vector4" alt="Background Scene" />
-    </div> -->
+    </div>
 
-    <v-row class="ml-2 ml-sm-6 pt-12 pt-sm-16 header-content" align="center" justify="center">
+    <Jupiter />
+    <Stars />
+
+    <v-row class="ml-2 ml-sm-6 pt-12 pt-sm-16 header-content" align="start" justify="start">
       <v-col cols="12" sm="10" md="8" lg="6" class="ml-4 ml-sm-8 ml-md-16">
         <div class="custom-name text-primary">Illustrations</div>
         <div class="custom-text text-primary mt-2 mb-6">
@@ -169,26 +173,23 @@ onUnmounted(() => {
 .gallery-section {
   margin-top: 0vh;
   /* Empurra a seção inteira para baixo (aumente este valor se quiser mais baixo ainda) */
-  padding: 50px 0;
-  /* Mantém um respiro interno confortável */
-  padding: 0;
+  padding: 200px 0;
   position: relative;
-  overflow: hidden;
+  overflow-y: visible !important;
+  /* Permite que Júpiter voe para fora da caixa se necessário */
   /* Permite ver o fundo escuro do App */
 }
 
 /* --- ESTILIZAÇÃO DO NOVO VETOR 4 --- */
 .scenery-vector-4 {
   position: absolute;
-  top: 10px;
+  top: -200px;
   /* Ajuste para encaixar logo abaixo da seção anterior */
   right: 0;
-  width: 10%;
+  width: 20%;
   max-width: 800px;
-  z-index: 1;
   pointer-events: none;
   /* Não bloqueia cliques */
-  opacity: 0.8;
 }
 
 .scenery-vector-4 img {
@@ -288,6 +289,20 @@ onUnmounted(() => {
   position: absolute;
   bottom: 12px;
   left: 12px;
+}
+
+.gallery-section {
+  position: relative;
+  /* Importante para o Jupiter se posicionar em relação a esta seção */
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: transparent;
+}
+
+/* Garanta que o overflow-y seja visible para o Jupiter não ser cortado se subir muito */
+.gallery-section {
+  overflow-y: visible !important;
 }
 
 /* Media Queries */

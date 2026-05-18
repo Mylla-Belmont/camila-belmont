@@ -6,25 +6,20 @@ import Stars from "@/components/Stars.vue";
   <v-container id="about-me" fluid class="pa-0 relative-container organic-background">
     <v-container class="px-4 px-md-6 py-0">
       <v-row class="fill-height" align="start" justify="start">
-        <v-col
-          cols="12"
-          sm="10"
-          md="6"
-          lg="5"
-          class="ml-0 text-center text-md-left d-flex flex-column custom-align-col"
-        >
+        <v-col cols="12" sm="10" md="6" lg="5"
+          class="ml-0 text-center text-md-left d-flex flex-column custom-align-col">
           <div class="about-name text-primary mb-6">About me</div>
-          
+
           <div class="about-text text-primary mb-4 pr-md-4">
-            I am an interdisciplinary professional working at the intersection of technology,
-            design, and creativity. I hold a Bachelor’s degree in Information Systems, a technical
-            degree in Computer Networks, and I am currently pursuing a Master’s degree in Computer
-            Science.
+            I am an interdisciplinary professional working at the intersection of technology and design. I hold a
+            Bachelor’s degree in <i>Information Systems</i>, a technical
+            degree in <i>Computer Networks</i>, and I am currently pursuing a Master’s degree in <i>Computer
+              Science</i>.
           </div>
-          
+
           <div class="about-text text-primary pr-md-4">
             Alongside my strong background in technology, I have always had a deep interest in
-            graphic design, digital illustration, and game development — fields in which I have
+            <b>design</b>, <b>illustration</b>, and <b>game development</b>, — fields in which I have
             continuously sought to grow and improve.
           </div>
         </v-col>
