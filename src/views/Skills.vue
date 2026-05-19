@@ -60,7 +60,6 @@
   <div class="skills-text-transition">
     <div class="quote-container">
       <p class="cosmic-quote">
-        <!-- "Designing worlds not just to be seen, but to be lived." -->
         "Distance is not measured by the passing of years, but by the memories we carry."
       </p>
       <span class="quote-author">— Fernanda Carvalho</span>
@@ -128,7 +127,10 @@ onUnmounted(() => {
   justify-content: center;
   align-items: center;
   background-color: #ffffff;
-  padding: 0 24px;
+  padding: 0 20px;
+  /* padding: 0 20px;
+  padding-top: 40%;
+  padding-bottom: 40%; */
 }
 
 .quote-container {
@@ -361,11 +363,12 @@ onUnmounted(() => {
     margin-top: 5vh;
     min-height: auto;
     padding-bottom: 190px;
+    position: absolute;
   }
 
   .content-layer {
     position: relative;
-    padding-top: 0vh;
+    padding-top: 20vh;
   }
 
   .custom-align-col {

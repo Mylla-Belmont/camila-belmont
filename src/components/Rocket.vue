@@ -48,10 +48,10 @@ const rocketStyle = computed(() => {
   } else {
     /* Mobile path */
     startX = -15;
-    startY = 35;
+    startY = 55;
     endX = 75;
     endY = -10;
-    baseRotation = -20;
+    baseRotation = -10;
   }
 
   const currentX = startX + (endX - startX) * props.progress;

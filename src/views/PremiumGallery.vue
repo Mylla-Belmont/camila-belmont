@@ -99,10 +99,14 @@ function animate(time: number) {
   lastTime = time;
   dt = Math.min(dt, 0.1);
 
-  if (hoverDirection.value === "right") {
-    position += FAST_SPEED * dt;
-  } else if (hoverDirection.value === "left") {
-    position -= FAST_SPEED * dt;
+  if (window.innerWidth >= 960) {
+    if (hoverDirection.value === "right") {
+      position += FAST_SPEED * dt;
+    } else if (hoverDirection.value === "left") {
+      position -= FAST_SPEED * dt;
+    } else if (!isHovering.value) {
+      position += NORMAL_SPEED * dt;
+    }
   } else if (!isHovering.value) {
     position += NORMAL_SPEED * dt;
   }
@@ -157,7 +161,7 @@ onUnmounted(() => {
     <Jupiter />
 
     <v-row class="ml-2 ml-sm-6 pt-12 pt-sm-16 header-content" align="start" justify="start">
-      <v-col cols="12" sm="10" md="8" lg="6" class="ml-4 ml-sm-8 ml-md-16">
+      <v-col cols="12" sm="10" md="8" lg="6" class="ml-4 ml-sm-8 ml-md-16 mt-10">
         <div class="custom-name text-primary">Illustrations</div>
         <div class="custom-text text-primary mt-2 mb-6">
           Commissions and personal projects for fun
@@ -243,7 +247,8 @@ onUnmounted(() => {
    ============================================================ */
 .gallery-section {
   width: 100%;
-  padding: 160px 0;
+  padding-top: 20%;
+  padding-bottom: 10%;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -265,6 +270,21 @@ onUnmounted(() => {
   height: auto;
 }
 
+.scenery-vector-6 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  max-width: 700px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.scenery-vector-6 img {
+  width: 80%;
+  height: auto;
+}
+
 /* ============================================================
    2. CABEÇALHO
    ============================================================ */
@@ -274,13 +294,13 @@ onUnmounted(() => {
 }
 
 .custom-name {
-  font-size: clamp(32px, 6vw, 42px);
+  font-size: clamp(24px, 6vw, 42px);
   font-weight: 800;
   letter-spacing: 1.5px;
 }
 
 .custom-text {
-  font-size: clamp(14px, 2vw, 16px);
+  font-size: clamp(12px, 2vw, 16px);
   letter-spacing: 1.2px;
   opacity: 0.9;
 }
@@ -523,6 +543,10 @@ onUnmounted(() => {
     width: 50%;
   }
 
+  .scenery-vector-6 {
+    width: 60%;
+  }
+
   .full-gallery {
     padding: 0 4%;
   }
@@ -541,6 +565,10 @@ onUnmounted(() => {
     height: 48px !important;
     padding: 0 24px !important;
     font-size: 14px !important;
+  }
+
+  .nav-zone {
+    pointer-events: none;
   }
 }
 </style>

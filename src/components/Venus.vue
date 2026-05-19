@@ -33,8 +33,15 @@ import venusImg from "@/assets/venus.svg";
    3. ANIMAÇÃO DE FLUTUAÇÃO
    ============================================================ */
 @keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-15px); }
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-15px);
+  }
 }
 
 .floating {
@@ -63,7 +70,7 @@ import venusImg from "@/assets/venus.svg";
 
 @media (max-width: 480px) {
   .position-venus {
-    top: 25vh;
+    top: 18vh;
     left: -5vw;
     width: clamp(120px, 45vw, 120px);
     z-index: 12;

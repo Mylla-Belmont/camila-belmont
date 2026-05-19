@@ -14,7 +14,7 @@ import moonImg from "@/assets/Moon.svg";
    ============================================================ */
 .position-moon {
   position: absolute;
-  top: 40%;
+  top: 20%;
   left: 0vw;
   width: clamp(90px, 14vw, 180px);
   z-index: 1;
@@ -34,8 +34,15 @@ import moonImg from "@/assets/Moon.svg";
    3. ANIMAÇÃO DE FLUTUAÇÃO
    ============================================================ */
 @keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-12px); }
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-12px);
+  }
 }
 
 .floating {

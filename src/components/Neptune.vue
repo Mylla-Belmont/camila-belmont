@@ -14,7 +14,7 @@ import neptuneImg from "@/assets/Neptune.svg";
    ============================================================ */
 .position-neptune {
   position: absolute;
-  top: 50%;
+  top: 30%;
   left: -10vw;
   width: clamp(320px, 10vw, 480px);
   z-index: 1;
@@ -34,8 +34,15 @@ import neptuneImg from "@/assets/Neptune.svg";
    3. ANIMAÇÃO DE FLUTUAÇÃO
    ============================================================ */
 @keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-12px); }
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-12px);
+  }
 }
 
 .floating {

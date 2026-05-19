@@ -194,7 +194,7 @@ function closeDialog() {
 }
 
 .scenery-vector-6 img {
-  width: 80%;
+  width: 50%;
   height: auto;
 }
 
@@ -225,8 +225,15 @@ function closeDialog() {
 }
 
 @keyframes fadeSlideIn {
-  from { opacity: 0; transform: translateY(40px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .project-card {

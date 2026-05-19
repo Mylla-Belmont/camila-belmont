@@ -4,9 +4,9 @@ import jupiterImg from "@/assets/Jupiter.svg";
 </script>
 
 <template>
-    <div class="position-jupiter floating" style="animation-delay: 2s">
-        <img :src="jupiterImg" class="planet-jupiter" alt="Jupiter Planet" />
-    </div>
+  <div class="position-jupiter floating" style="animation-delay: 2s">
+    <img :src="jupiterImg" class="planet-jupiter" alt="Jupiter Planet" />
+  </div>
 </template>
 
 <style scoped>
@@ -15,9 +15,9 @@ import jupiterImg from "@/assets/Jupiter.svg";
    ============================================================ */
 .position-jupiter {
   position: absolute;
-  top: -120px;
+  top: -20px;
   right: -5vw;
-  width: clamp(580px, 18vw, 620px);
+  width: clamp(520px, 18vw, 620px);
   z-index: 2;
   pointer-events: none;
 }
@@ -35,8 +35,15 @@ import jupiterImg from "@/assets/Jupiter.svg";
    3. ANIMAÇÃO DE FLUTUAÇÃO
    ============================================================ */
 @keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-15px); }
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-15px);
+  }
 }
 
 .floating {
@@ -56,9 +63,9 @@ import jupiterImg from "@/assets/Jupiter.svg";
 
 @media (max-width: 480px) {
   .position-jupiter {
-    top: -60px;
-    right: 5vw;
-    width: 120px;
+    top: -50px;
+    right: -10vw;
+    width: 320px;
   }
 }
 </style>
