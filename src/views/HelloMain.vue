@@ -2,20 +2,16 @@
 import Stars from "@/components/Stars.vue";
 import Mars from "@/components/Mars.vue";
 import Uranus from "@/components/Uranus.vue";
+import perpetuaVideo from "@/assets/perpetua.mp4";
 </script>
 
 <template>
   <v-container id="inicio" fluid class="pa-0 relative-container">
-    <v-sheet class="bg-primary pt-16" height="auto" min-height="90vh" width="100%">
-      <v-container class="px-6 px-md-16 fill-height align-center">
+    <v-sheet class="bg-primary pt-10" height="auto" min-height="90vh" width="100%">
+      <v-container class="px-6 px-md-18 fill-height align-center">
         <v-row class="fill-height my-auto mt-md-12" align="center" justify="start">
-          
-          <v-col
-            cols="12"
-            md="7"
-            lg="6"
-            class="pr-md-10 text-center text-md-left d-flex flex-column justify-center"
-          >
+
+          <v-col cols="12" md="7" lg="6" class="pr-md-10 text-center text-md-left d-flex flex-column justify-center">
             <div class="hello-text text-secondary font-italic mb-3">Hello! I'm</div>
             <div class="name-text text-secondary line-height-tight">Camila</div>
             <div class="name-text text-secondary line-height-tight mb-8">Belmont</div>
@@ -23,22 +19,11 @@ import Uranus from "@/components/Uranus.vue";
               digital illustrator and game designer
             </div>
           </v-col>
-          
+
           <v-spacer />
-          
-          <v-col
-            cols="12"
-            md="5"
-            lg="4"
-            class="d-flex justify-center justify-md-end"
-          >
-            <v-sheet
-              elevation="0"
-              class="video-placeholder d-flex align-center justify-center"
-              rounded="xl"
-            >
-              <div class="video-label text-primary">Video</div>
-            </v-sheet>
+
+          <v-col cols="12" md="5" lg="4" class="pl-md-8 d-flex justify-center justify-md-end">
+            <video autoplay loop muted playsinline :src="perpetuaVideo" class="video-placeholder"></video>
           </v-col>
         </v-row>
       </v-container>
@@ -91,23 +76,27 @@ import Uranus from "@/components/Uranus.vue";
    3. COMPONENTES VISUAIS
    ============================================================ */
 .video-placeholder {
-  width: 100%;
+  width: 150%;
   max-width: 580px;
   aspect-ratio: 3 / 3;
-  background-color: #ffffff;
-}
-
-.video-label {
-  font-size: 24px;
-  font-weight: bold;
+  border-radius: 24px;
+  object-fit: cover;
+  display: block;
 }
 
 /* ============================================================
    4. ANIMAÇÃO DE ENTRADA
    ============================================================ */
 @keyframes fadeSlideIn {
-  from { opacity: 0; transform: translateY(40px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .v-row {
@@ -120,6 +109,15 @@ import Uranus from "@/components/Uranus.vue";
    5. RESPONSIVIDADE
    ============================================================ */
 @media (max-width: 959px) {
+  .video-placeholder {
+    width: 100%;
+    max-width: 580px;
+    aspect-ratio: 3 / 3;
+    border-radius: 24px;
+    object-fit: cover;
+    display: block;
+  }
+
   .relative-container {
     overflow: hidden;
   }
@@ -128,6 +126,12 @@ import Uranus from "@/components/Uranus.vue";
 @media (min-width: 960px) {
   .relative-container {
     overflow: visible;
+  }
+}
+
+@media (min-width: 1024px) {
+  .video-placeholder {
+    max-width: 700px;
   }
 }
 </style>
