@@ -33,8 +33,15 @@ import uranusImg from "@/assets/uranus.svg";
    3. ANIMAÇÃO DE FLUTUAÇÃO
    ============================================================ */
 @keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-15px); }
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-15px);
+  }
 }
 
 .floating {
@@ -63,8 +70,8 @@ import uranusImg from "@/assets/uranus.svg";
 
 @media (max-width: 480px) {
   .position-uranus {
-    top: 40vh;
-    right: 70vw;
+    top: 28vh;
+    right: 90vw;
     width: clamp(40px, 25vw, 70px);
   }
 }

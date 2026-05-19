@@ -47,7 +47,7 @@ import jupiterImg from "@/assets/Jupiter.svg";
 }
 
 .floating {
-  animation: float 5s ease-in-out infinite;
+  animation: float 3s ease-in-out infinite;
 }
 
 /* ============================================================

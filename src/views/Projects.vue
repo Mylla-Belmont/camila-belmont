@@ -207,14 +207,16 @@ function closeDialog() {
    2. CABEÇALHO
    ============================================================ */
 .custom-name {
-  font-size: clamp(28px, 6vw, 40px);
+  font-size: clamp(24px, 5vw, 32px);
+  letter-spacing: 1.2px;
   font-weight: 700;
-  letter-spacing: 1.7px;
 }
 
 .custom-text {
-  font-size: clamp(13px, 2vw, 14px);
-  letter-spacing: 1.7px;
+  font-size: clamp(12px, 1.8vw, 15px);
+  letter-spacing: 1px;
+  line-height: 1.7;
+  font-weight: 400;
 }
 
 /* ============================================================
@@ -392,7 +394,6 @@ function closeDialog() {
     min-height: 100vh;
     width: 100%;
     overflow: hidden;
-    padding-bottom: 20%;
   }
 
   .scenery-layer {
@@ -402,6 +403,20 @@ function closeDialog() {
     height: 100%;
     pointer-events: none;
     z-index: 1;
+  }
+
+  .scenery-vector-6 {
+    position: absolute;
+    top: 0px;
+    left: 0;
+    width: 100%;
+    max-width: 700px;
+    pointer-events: none;
+  }
+
+  .scenery-vector-6 img {
+    width: 50%;
+    height: auto;
   }
 
   .dialog-layout {
@@ -417,6 +432,16 @@ function closeDialog() {
   .dialog-body {
     flex: 1;
     padding: 32px;
+  }
+}
+
+@media (max-width: 959px) {
+  .scenery-vector-6 {
+    width: 60%;
+  }
+
+  .scenery-vector-6 img {
+    width: 60%;
   }
 }
 </style>

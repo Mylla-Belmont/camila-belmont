@@ -62,9 +62,9 @@ import moonImg from "@/assets/Moon.svg";
 
 @media (max-width: 480px) {
   .position-moon {
-    top: 5%;
-    left: 0;
-    width: 80px;
+    top: 5px;
+    left: 20px;
+    width: 50px;
   }
 }
 </style>

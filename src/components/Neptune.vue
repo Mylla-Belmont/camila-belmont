@@ -62,9 +62,9 @@ import neptuneImg from "@/assets/Neptune.svg";
 
 @media (max-width: 480px) {
   .position-neptune {
-    top: 3%;
-    left: 0;
-    width: 60px;
+    top: 50px;
+    left: -50px;
+    width: 120px;
   }
 }
 </style>

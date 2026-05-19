@@ -294,15 +294,16 @@ onUnmounted(() => {
 }
 
 .custom-name {
-  font-size: clamp(24px, 6vw, 42px);
-  font-weight: 800;
-  letter-spacing: 1.5px;
+  font-size: clamp(24px, 5vw, 32px);
+  letter-spacing: 1.2px;
+  font-weight: 700;
 }
 
 .custom-text {
-  font-size: clamp(12px, 2vw, 16px);
-  letter-spacing: 1.2px;
-  opacity: 0.9;
+  font-size: clamp(12px, 1.8vw, 15px);
+  letter-spacing: 1px;
+  line-height: 1.7;
+  font-weight: 400;
 }
 
 /* ============================================================

@@ -3,18 +3,18 @@ import Stars from "@/components/Stars.vue";
 </script>
 
 <template>
-    <v-container id="contato" fluid class="pa-0 contact-wrapper contact-background">
-        <v-container class="px-6 px-md-16 content-layer">
-            <v-row class="fill-height mt-md-12" align="center" justify="center">
+  <v-container id="contato" fluid class="pa-0 contact-wrapper contact-background">
+    <v-container class="px-6 px-md-16 content-layer">
+      <v-row class="fill-height mt-md-12" align="center" justify="center">
 
-                <v-col cols="12" md="8" lg="6" class="text-center d-flex flex-column justify-center">
-                </v-col>
+        <v-col cols="12" md="8" lg="6" class="text-center d-flex flex-column justify-center">
+        </v-col>
 
-            </v-row>
-        </v-container>
-
-        <Stars />
+      </v-row>
     </v-container>
+
+    <Stars />
+  </v-container>
 </template>
 
 <style scoped>
@@ -35,10 +35,8 @@ import Stars from "@/components/Stars.vue";
   background-position: bottom center;
   background-repeat: no-repeat;
   background-size: contain;
-  min-height: 60vh;
-  display: flex;
-  align-items: flex-end;
-  padding-bottom: 60px;
+  min-height: 100vh;
+  padding-bottom: 120px;
 }
 
 /* ============================================================
@@ -53,8 +51,15 @@ import Stars from "@/components/Stars.vue";
    4. ANIMAÇÃO DE ENTRADA
    ============================================================ */
 @keyframes fadeSlideIn {
-  from { opacity: 0; transform: translateY(30px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .v-row {
@@ -68,7 +73,7 @@ import Stars from "@/components/Stars.vue";
 @media (max-width: 959px) {
   .contact-background {
     background-size: 100% auto;
-    min-height: 45vh;
+    min-height: 20vh;
     padding-bottom: 40px;
   }
 }
@@ -76,7 +81,7 @@ import Stars from "@/components/Stars.vue";
 @media (min-width: 960px) {
   .contact-background {
     background-size: 100% auto;
-    min-height: 80vh;
+    min-height: 100vh;
   }
 }
 </style>
