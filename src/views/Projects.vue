@@ -386,7 +386,24 @@ function closeDialog() {
 /* ============================================================
    5. RESPONSIVIDADE
    ============================================================ */
-@media (min-width: 600px) {
+@media (min-width: 480px) {
+  .projects-section {
+    position: relative;
+    min-height: 100vh;
+    width: 100%;
+    overflow: hidden;
+    padding-bottom: 20%;
+  }
+
+  .scenery-layer {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+  }
+
   .dialog-layout {
     flex-direction: row;
   }

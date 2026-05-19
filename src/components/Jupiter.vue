@@ -63,8 +63,8 @@ import jupiterImg from "@/assets/Jupiter.svg";
 
 @media (max-width: 480px) {
   .position-jupiter {
-    top: -50px;
-    right: -10vw;
+    top: 20px;
+    right: -5vw;
     width: 320px;
   }
 }

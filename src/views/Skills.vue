@@ -355,6 +355,12 @@ onUnmounted(() => {
 }
 
 @media (max-width: 480px) {
+  .skills-text-transition {
+    padding: 0 20px;
+    padding-top: 40%;
+    padding-bottom: 40%;
+  }
+
   .organic-background {
     background-size: 30% auto;
     -webkit-mask-size: 30% auto;

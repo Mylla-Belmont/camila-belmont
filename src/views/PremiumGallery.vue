@@ -539,12 +539,18 @@ onUnmounted(() => {
    8. RESPONSIVIDADE MOBILE
    ============================================================ */
 @media (max-width: 959px) {
-  .scenery-vector-4 {
-    width: 50%;
+  .gallery-section {
+    width: 100%;
+    padding-top: 50%;
+    padding-bottom: 10%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    background-color: transparent;
   }
 
-  .scenery-vector-6 {
-    width: 60%;
+  .scenery-vector-4 {
+    width: 50%;
   }
 
   .full-gallery {
