@@ -23,7 +23,7 @@ const toolAssignments: string[] = [
   "Photoshop", "Photoshop", "Photoshop", "Sketchbook", "Sketchbook",
   "Sketchbook", "Sketchbook", "Paint", "Sketchbook", "Krita",
   "Krita", "Ibis Paint", "Ibis Paint", "Ibis Paint", "Ibis Paint",
-  "Ibis Paint", "Ibis Paint", "Ibis Paint", "Ibis Paint", "Ibis Paint",
+  "Ibis Paint", "Ibis Paint", "Ibis Paint", "Ibis Paint", "Ibis Paint", "Krita"
 ]
 
 function deriveTitle(filepath: string): string {
