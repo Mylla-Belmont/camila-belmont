@@ -195,7 +195,7 @@ onUnmounted(() => {
 
         <div class="text-center mt-12 mb-4">
           <v-btn class="cosmic-gallery-btn text-primary" size="large" @click="toggleGallery(true)">
-            <span>Ver Galeria Completa</span>
+            <span>View Full Gallery</span>
             <v-icon class="ml-2 icon-transition" size="20">mdi-chevron-down</v-icon>
           </v-btn>
         </div>
@@ -216,7 +216,7 @@ onUnmounted(() => {
 
         <div class="text-center mt-12 mb-8">
           <v-btn class="cosmic-gallery-btn text-primary active" size="large" @click="toggleGallery(false)">
-            <span>Recolher Galeria</span>
+            <span>Collapse Gallery</span>
             <v-icon class="ml-2 icon-transition" size="20">mdi-chevron-up</v-icon>
           </v-btn>
         </div>
